@@ -1,13 +1,15 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-// import { UltraHonkBackend } from '@aztec/bb.js';
 import { CompiledCircuit, Noir } from '@noir-lang/noir_js';
 import circuit from '../circuit/target/circuit.json';
+// import { UltraHonkBackend } from '@aztec/bb.js';
+
 import initNoirC from "@noir-lang/noirc_abi";
 import initACVM from "@noir-lang/acvm_js";
 import acvm from "@noir-lang/acvm_js/web/acvm_js_bg.wasm?url";
 import noirc from "@noir-lang/noirc_abi/web/noirc_abi_wasm_bg.wasm?url";
+
 await Promise.all([initACVM(fetch(acvm)), initNoirC(fetch(noirc))]);
 function App() {
 
