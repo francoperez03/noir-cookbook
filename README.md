@@ -50,7 +50,6 @@ npm install @noir-lang/noir_wasm@1.0.0-beta.0 @noir-lang/noir_js@1.0.0-beta.0 @a
 Estas librerías son esenciales para interactuar con Noir desde JavaScript o TypeScript y facilitan la integración con aplicaciones web.
 
 ## Configuración Inicial de una App Web
-Si estás integrando Noir en una aplicación React con TypeScript, aquí tienes un ejemplo de estructura inicial:
 
 #### Instala las dependencias necesarias:
 
