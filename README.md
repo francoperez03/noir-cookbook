@@ -2,6 +2,25 @@
 
 Este documento sirve como una guía práctica para trabajar con proyectos en Noir. Aquí encontrarás pasos, configuraciones y consejos útiles para sacar el máximo provecho a esta poderosa herramienta de desarrollo.
 
+## Introducción
+
+Este ejemplo utiliza un circuito llamado `main` que toma cuatro parámetros: `balance`, `payment`, `limit` y `fee_rate`. La función calcula el monto total del pago incluyendo el fee y verifica dos condiciones:
+
+* Que el balance sea mayor o igual al monto total del pago;
+* Que el monto total del pago sea menor o igual al límite de pago.
+
+De esta manera, se garantiza que el pago sea válido y se cumplan las condiciones de pago.
+## Código del Circuito
+
+```rust
+fn main(balance: u64, payment: u64, limit: u64, fee_rate: u64) {
+    let fee: u64 = (payment * fee_rate) / 100;
+    let total_payment: u64 = payment + fee;
+    assert(balance >= total_payment);
+    assert(total_payment <= limit);
+}
+```
+
 ---
 
 ## Instalación de noirup
@@ -78,7 +97,11 @@ Deberías ver el witness generado en la consola del navegador. A continuación, 
     // ...
 }
 ```
+Si no se cumplen las condiciones para generar la prueba, verás un cartel con el siguiente mensaje:
 
+```text
+Error: Cannot satisfy constraint
+```
 
 ## Buenas Prácticas
 
