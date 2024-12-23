@@ -97,6 +97,8 @@ Deberías ver el witness generado en la consola del navegador. A continuación, 
     // ...
 }
 ```
+Podes modificar los parametros para generar una prueba diferente.
+
 Si no se cumplen las condiciones para generar la prueba, verás un cartel con el siguiente mensaje:
 
 ```text
@@ -109,4 +111,4 @@ Error: Cannot satisfy constraint
 - Utilizá herramientas como `nargo` para validar y compilar los circuitos antes de integrarlos.
 - Estamos usando la versión `1.0.0-beta.0`.
 
-Con esta guía podés iniciar proyectos con Noir de manera eficiente y estructurada. Si tenés dudas o sugerencias, no dudes en compartirlas.
+Con esta guía podés iniciar proyectos con Noir de manera eficiente y estructurada. Si tenés dudas o sugerencias, no dudes en preguntarme.
