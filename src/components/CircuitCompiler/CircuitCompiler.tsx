@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { compile, createFileManager } from "@noir-lang/noir_wasm";
 import MonacoEditor from "@monaco-editor/react";
 import "./CircuitCompiler.css";
