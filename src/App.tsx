@@ -20,8 +20,8 @@ function App() {
       </div>
 
       <CircuitCompiler
-        mainUrl="/circuit/src/main.nr"
-        nargoTomlUrl="/circuit/Nargo.toml"
+        mainUrl="../circuit/src/main.nr"
+        nargoTomlUrl="../circuit/Nargo.toml"
         onCompile={(compiledAcir) => setAcir(compiledAcir)}
       />
 
