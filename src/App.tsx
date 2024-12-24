@@ -1,32 +1,37 @@
 import { useState } from "react";
 import Hero from "./components/Hero/Hero";
 import ProofForm from "./components/ProofForm/ProofForm";
-import VerifyProof from "./components/VerifyProof/VerifyProof";
 import "./App.css";
 import "./components/Hero/Hero.css";
 import "./components/ProofForm/ProofForm.css";
 import { ProofData } from "@aztec/bb.js";
-import ProofInput from "./components/ProofInput/ProofInput";
+import CircuitCompiler from "./components/CircuitCompiler/CircuitCompiler";
+import { CompiledCircuit } from "@noir-lang/noir_js";
+import ProofVerifier from "./components/ProofVerifier/ProofVerifier";
 
 function App() {
   const [proof, setProof] = useState<ProofData | null>(null);
+  const [acir, setAcir] = useState<object | null>(null);
 
   return (
     <div className="app-container">
-      {/* Hero at the top */}
       <div className="hero">
         <Hero />
       </div>
 
-      {/* Form and Input side by side */}
+      <CircuitCompiler
+        mainUrl="/circuit/src/main.nr"
+        nargoTomlUrl="/circuit/Nargo.toml"
+        onCompile={(compiledAcir) => setAcir(compiledAcir)}
+      />
+
       <div className="main-content">
-        <div className="left-section">
-          <ProofForm onProofGenerated={(newProof) => setProof(newProof)} />
+        <div className="form-section">
+          <ProofForm onProofGenerated={(newProof) => setProof(newProof)} acir={acir as { program: CompiledCircuit }} />
         </div>
-        <div className="right-section">
-          <ProofInput proof={proof} onProofChange={(newProof) => setProof(newProof)} />
-          <VerifyProof proof={proof} />
-        </div>
+        {proof && (
+          <ProofVerifier proof={proof} onProofChange={(updatedProof) => setProof(updatedProof)} />
+        )}
       </div>
     </div>
   );
