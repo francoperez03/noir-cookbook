@@ -16,16 +16,17 @@ interface ProofFormProps {
 }
 
 function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
-  const [balance, setBalance] = useState(100);
-  const [payment, setPayment] = useState(80);
-  const [limit, setLimit] = useState(200);
-  const [feeRate, setFeeRate] = useState(10);
+  const [inputs, setInputs] = useState<{ [key: string]: number }>({});
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   if (!acir) {
     return null;
   }
+
+  const handleInputChange = (name: string, value: number) => {
+    setInputs((prev) => ({ ...prev, [name]: value }));
+  };
 
   async function handleCreateProof(): Promise<void> {
     setStatus(null);
@@ -34,17 +35,14 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
 
     try {
       if(acir){
-        const params = { balance, payment, limit, fee_rate: feeRate };
         const acidCircuit = acir.program as CompiledCircuit;
-        console.log(acidCircuit)
+        const params = inputs;
         const noir = new Noir(acidCircuit);
         const backend = new UltraHonkBackend(acidCircuit.bytecode);
-        console.log('INSTANCIADO2');
   
         const { witness } = await noir.execute(params);
-        console.log(witness);
         const generatedProof = await backend.generateProof(witness);
-        console.log(generatedProof);
+  
         onProofGenerated(generatedProof);
         setStatus("¡Prueba creada correctamente!");
       }
@@ -58,50 +56,21 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
   return (
     <div className="form-container">
       <h1 className="form-title">Paso 2: Probá</h1>
-      <div className="form-group">
-        <label>
-          Balance:
-          <input
-            type="number"
-            value={balance}
-            onChange={(e) => setBalance(Number(e.target.value))}
-            className="form-input"
-          />
-        </label>
-      </div>
-      <div className="form-group">
-        <label>
-          Payment:
-          <input
-            type="number"
-            value={payment}
-            onChange={(e) => setPayment(Number(e.target.value))}
-            className="form-input"
-          />
-        </label>
-      </div>
-      <div className="form-group">
-        <label>
-          Limit:
-          <input
-            type="number"
-            value={limit}
-            onChange={(e) => setLimit(Number(e.target.value))}
-            className="form-input"
-          />
-        </label>
-      </div>
-      <div className="form-group">
-        <label>
-          Fee Rate:
-          <input
-            type="number"
-            value={feeRate}
-            onChange={(e) => setFeeRate(Number(e.target.value))}
-            className="form-input"
-          />
-        </label>
-      </div>
+      <p className="form-subtitle">Valores sugeridos para el ejemplo base:</p>
+      <p>balance: 200, payment: 100, limit: 300, fee_rate(%): 10</p>
+      {acir.program.abi.parameters.map((param) => (
+        <div key={param.name} className="form-group">
+          <label>
+            {param.name.charAt(0).toUpperCase() + param.name.slice(1)}:
+            <input
+              type="number"
+              value={inputs[param.name] || 0}
+              onChange={(e) => handleInputChange(param.name, Number(e.target.value))}
+              className="form-input"
+            />
+          </label>
+        </div>
+      ))}
       <button onClick={handleCreateProof} className="form-button" disabled={isLoading}>
         {isLoading ? "Creando prueba..." : "Crear Prueba"}
       </button>
