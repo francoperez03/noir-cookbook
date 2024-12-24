@@ -16,7 +16,7 @@ interface ProofFormProps {
 }
 
 function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
-  const [inputs, setInputs] = useState<{ [key: string]: number }>({});
+  const [inputs, setInputs] = useState<{ [key: string]: number }>({ balance: 200, payment: 100, limit: 300, fee_rate: 10 });
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
