@@ -47,21 +47,21 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
     try {
       const fm = createFileManager("/");
 
-      const mainResponse = await fetch(mainUrl);
-      const nargoResponse = await fetch(nargoTomlUrl);
-
-      if (!mainResponse.ok || !nargoResponse.ok) {
-        throw new Error("Error al cargar los archivos del circuito.");
+      if (!circuitCode) {
+        throw new Error("El código del circuito no está cargado.");
       }
 
-      const mainBody = await mainResponse.text();
-      const nargoBody = await nargoResponse.text();
+      const nargoResponse = await fetch(nargoTomlUrl);
 
-      setCircuitCode(mainBody);
+      if (!nargoResponse.ok) {
+        throw new Error("Error al cargar el archivo Nargo.toml.");
+      }
+
+      const nargoBody = await nargoResponse.text();
 
       const mainStream = new ReadableStream({
         start(controller) {
-          controller.enqueue(new TextEncoder().encode(mainBody));
+          controller.enqueue(new TextEncoder().encode(circuitCode));
           controller.close();
         },
       });
@@ -75,7 +75,6 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
 
       fm.writeFile("./src/main.nr", mainStream);
       fm.writeFile("./Nargo.toml", nargoStream);
-
 
       const compiledCircuit = await compile(fm);
 
@@ -97,7 +96,7 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
       <button
         onClick={handleCompile}
         className="circuit-compiler-button"
-        disabled={isLoading}
+        disabled={isLoading || !circuitCode}
       >
         {isLoading ? "Compilando..." : "Compilar Circuito"}
       </button>
@@ -110,8 +109,9 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
               defaultLanguage="rust"
               theme="vs-dark"
               value={circuitCode}
+              onChange={(value) => setCircuitCode(value || "")}
               options={{
-                readOnly: true,
+                readOnly: false,
                 folding: true,
                 scrollBeyondLastLine: false,
                 cursorStyle: "line",
