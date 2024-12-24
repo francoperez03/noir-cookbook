@@ -1,0 +1,80 @@
+.proof-verifier-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.proof-verifier-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.proof-verifier-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.proof-input-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.proof-input-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #000;
+}
+
+.proof-input-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.verify-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.verify-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.verify-button:hover {
+  background-color: #0056b3;
+}
+
+.verify-status {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+}
+
+.verify-status.success {
+  background-color: #52c41a;
+  color: #fff;
+}
+
+.verify-status.error {
+  background-color: #ff4d4f;
+  color: #fff;
+}
