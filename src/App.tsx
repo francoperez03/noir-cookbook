@@ -20,8 +20,8 @@ function App() {
       </div>
 
       <CircuitCompiler
-        mainUrl="../circuit/src/main.nr"
-        nargoTomlUrl="../circuit/Nargo.toml"
+        mainUrl="/circuit/src/main.nr"
+        nargoTomlUrl="/circuit/Nargo.toml"
         onCompile={(compiledAcir) => setAcir(compiledAcir)}
       />
 
@@ -30,7 +30,7 @@ function App() {
           <ProofForm onProofGenerated={(newProof) => setProof(newProof)} acir={acir as { program: CompiledCircuit }} />
         </div>
         {proof && (
-          <ProofVerifier proof={proof} onProofChange={(updatedProof) => setProof(updatedProof)} />
+          <ProofVerifier proof={proof} acir={acir as { program: CompiledCircuit }} onProofChange={(updatedProof) => setProof(updatedProof)} />
         )}
       </div>
     </div>

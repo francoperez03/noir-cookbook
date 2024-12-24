@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { ProofData, UltraHonkBackend } from "@aztec/bb.js";
-import circuit from "../../../circuit/target/circuit.json";
 import "./ProofVerifier.css";
 
 import initNoirC from "@noir-lang/noirc_abi";
 import initACVM from "@noir-lang/acvm_js";
 import acvm from "@noir-lang/acvm_js/web/acvm_js_bg.wasm?url";
 import noirc from "@noir-lang/noirc_abi/web/noirc_abi_wasm_bg.wasm?url";
+import { CompiledCircuit } from "@noir-lang/noir_js";
 
 await Promise.all([initACVM(fetch(acvm)), initNoirC(fetch(noirc))]);
 
 type ProofVerifierProps = {
   proof: ProofData | null;
+  acir: { program: CompiledCircuit } | null
   onProofChange: (proof: ProofData | null) => void;
 };
 
-function ProofVerifier({ proof, onProofChange }: ProofVerifierProps) {
+function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
   const [inputValue, setInputValue] = useState<string>(proof ? JSON.stringify([...proof.proof]) : "");
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,10 +49,13 @@ function ProofVerifier({ proof, onProofChange }: ProofVerifierProps) {
     setStatus(null);
 
     try {
-      const backend = new UltraHonkBackend(circuit.bytecode);
-      const isValid = await backend.verifyProof(proof);
+      if(acir){
+        const acidCircuit = acir.program as CompiledCircuit;
+        const backend = new UltraHonkBackend(acidCircuit.bytecode);
+        const isValid = await backend.verifyProof(proof);
+        setStatus(isValid ? "¡Prueba verificada correctamente!" : "Prueba inválida.");
+      }
 
-      setStatus(isValid ? "¡Prueba verificada correctamente!" : "Prueba inválida.");
     } catch (error) {
       setStatus(`Verification error: ${error instanceof Error ? error.message : "Unknown error"}`);
     } finally {
