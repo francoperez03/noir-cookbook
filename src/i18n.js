@@ -34,10 +34,11 @@ const resources = {
       loadError: "Error loading circuit file.",
       missingCircuitCode: "Circuit code not loaded.",
       nargoError: "Error loading Nargo.toml.",
-      errorPrefix: "Error"
+      errorPrefix: "Error",
+      explanation: "By pressing the \"Compiler Circuit\" button, the compiler generates the ACIR file (Abstract Circuit Intermediate Representation), which is a low-level representation of the circuit used for generating and verifying zero-knowledge proofs."
     },
     proofForm: {
-      title: "Step 2: Test",
+      title: "Step 2: Prove",
       suggestedValues: "Suggested values for the base example:",
       exampleValues: "balance: 200, payment: 100, limit: 300, fee_rate(%): 10",
       creatingProof: "Creating proof...",
@@ -45,6 +46,7 @@ const resources = {
       successMessage: "Proof successfully created!",
       errorPrefix: "Error",
       unknownError: "Unknown error occurred",
+      explanation: "Now that the ACIR is generated, you can create a proof using parameters that satisfy the circuit. If the parameters do not meet the circuit's constraints, the proof cannot be generated.",
       parameters: {
         balance: "Balance",
         payment: "Payment",
@@ -63,6 +65,7 @@ const resources = {
       noProof: "There is no proof to verify.",
       errorPrefix: "Verification error",
       unknownError: "Unknown error occurred",
+      explanation: "Below, you can see the generated proof. The next step is to verify that it was created correctly. If the proof includes public inputs, fields for entering these inputs will appear below. By clicking 'Verify Proof', the system will validate whether the proof is correct. Note: If you manually edit the proof in the editor or modify the public inputs, the verification will fail.",
       parameters: {
         balance: "Balance",
         payment: "Payment",
@@ -101,7 +104,8 @@ const resources = {
       loadError: "Error al cargar el archivo del circuito.",
       missingCircuitCode: "El código del circuito no está cargado.",
       nargoError: "Error al cargar Nargo.toml.",
-      errorPrefix: "Error"
+      errorPrefix: "Error",
+      explanation: "Al presionar el botón \"Compilar Circuito\", el compilador genera el archivo ACIR (Representación Intermedia de Circuito Abstracto), que es una representación de bajo nivel del circuito utilizada para generar y verificar pruebas de conocimiento cero."
     },
     proofForm: {
       title: "Paso 2: Prueba",
@@ -112,6 +116,7 @@ const resources = {
       successMessage: "¡Prueba creada correctamente!",
       errorPrefix: "Error",
       unknownError: "Ocurrió un error desconocido",
+      explanation: "Ahora que está generado el ACIR, se puede generar una prueba usando como parámetros valores que satisfagan el circuito. En el caso de que los parámetros no cumplan con las restricciones del circuito, la prueba no puede ser generada.",
       parameters: {
         balance: "Saldo",
         payment: "Pago",
@@ -130,6 +135,7 @@ const resources = {
       noProof: "No hay prueba para verificar.",
       errorPrefix: "Error de verificación",
       unknownError: "Ocurrió un error desconocido",
+      explanation: "A continuación, puedes ver la prueba generada. El siguiente paso es verificar que fue creada correctamente. Si la prueba incluye inputs públicos, aparecerán campos para que los completes. Al presionar 'Verificar Prueba', el sistema comprobará si la prueba es válida. Nota: Si editas manualmente la prueba en el editor o modificas los inputs públicos, la verificación fallará.",
       parameters: {
         balance: "Saldo",
         payment: "Pago",

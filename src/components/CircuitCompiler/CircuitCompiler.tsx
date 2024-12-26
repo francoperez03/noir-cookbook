@@ -89,6 +89,7 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
   return (
     <div className="circuit-compiler-container">
       <h2 className="circuit-compiler-title">{t("title")}</h2>
+      <p className="circuit-compiler-explanation">{t("explanation")}</p>
       <button
         onClick={handleCompile}
         className="circuit-compiler-button"
