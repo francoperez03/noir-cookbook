@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { compile, createFileManager } from "@noir-lang/noir_wasm";
 import MonacoEditor from "@monaco-editor/react";
+import { useTranslation } from "react-i18next";
 import "./CircuitCompiler.css";
 
 type CircuitCompilerProps = {
@@ -10,6 +11,7 @@ type CircuitCompilerProps = {
 };
 
 function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerProps) {
+  const { t } = useTranslation("circuitCompiler");
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [circuitCode, setCircuitCode] = useState<string | null>(null);
@@ -22,22 +24,18 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
         const mainResponse = await fetch(mainUrl);
 
         if (!mainResponse.ok) {
-          throw new Error("Error al cargar el archivo del circuito.");
+          throw new Error(t("loadError"));
         }
 
         const mainBody = await mainResponse.text();
         setCircuitCode(mainBody);
-      } catch (error) {
-        setStatus(
-          `Error al cargar el código: ${
-            error instanceof Error ? error.message : "Error desconocido"
-          }`
-        );
+      } catch {
+        setStatus(t("loadError"));
       }
     }
 
     loadCode();
-  }, [mainUrl, setCircuitCode, setStatus]);
+  }, [mainUrl, t]);
 
   async function handleCompile() {
     setStatus(null);
@@ -48,13 +46,13 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
       const fm = createFileManager("/");
 
       if (!circuitCode) {
-        throw new Error("El código del circuito no está cargado.");
+        throw new Error(t("missingCircuitCode"));
       }
 
       const nargoResponse = await fetch(nargoTomlUrl);
 
       if (!nargoResponse.ok) {
-        throw new Error("Error al cargar el archivo Nargo.toml.");
+        throw new Error(t("nargoError"));
       }
 
       const nargoBody = await nargoResponse.text();
@@ -79,12 +77,10 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
       const compiledCircuit = await compile(fm);
 
       setAcir(JSON.stringify(compiledCircuit, null, 2));
-      setStatus("¡Circuito compilado correctamente!");
+      setStatus(t("compileSuccess"));
       onCompile(compiledCircuit);
-    } catch (error) {
-      setStatus(
-        `Error: ${error instanceof Error ? error.message : "Error desconocido"}`
-      );
+    } catch {
+      setStatus(t("compileError"));
     } finally {
       setIsLoading(false);
     }
@@ -92,18 +88,19 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
 
   return (
     <div className="circuit-compiler-container">
-      <h2 className="circuit-compiler-title">Paso 1: Compilá</h2>
+      <h2 className="circuit-compiler-title">{t("title")}</h2>
       <button
         onClick={handleCompile}
         className="circuit-compiler-button"
         disabled={isLoading || !circuitCode}
       >
-        {isLoading ? "Compilando..." : "Compilar Circuito"}
+        {isLoading ? t("compiling") : t("compile")}
       </button>
 
       <div className="editor-wrapper">
         {circuitCode && (
           <div className="editor-container">
+            <h3 className="editor-title">{t("circuitTitle")}</h3>
             <MonacoEditor
               height="100%"
               defaultLanguage="rust"
@@ -122,6 +119,7 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
 
         {acir && (
           <div className="editor-container">
+            <h3 className="editor-title">{t("acirTitle")}</h3>
             <MonacoEditor
               height="100%"
               defaultLanguage="json"
@@ -140,7 +138,7 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
       {status && (
         <div
           className={`circuit-compiler-status ${
-            status.startsWith("Error") ? "error" : "success"
+            status.startsWith(t("errorPrefix")) ? "error" : "success"
           }`}
         >
           {status}

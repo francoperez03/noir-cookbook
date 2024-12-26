@@ -61,6 +61,8 @@
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
+  text-align: center;
+
 }
 
 .editor-container {
@@ -71,11 +73,18 @@
   border: 1px solid #444;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #1e1e2f;
 }
 
 @media (max-width: 768px) {
   .editor-container {
     max-width: 100%; 
   }
+}
+.editor-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  font-weight: bold;
+  color: #fff;
+  text-align: left;
 }

@@ -1,13 +1,14 @@
+import "./Hero.css";
+import { useTranslation } from "react-i18next";
+
 function Hero() {
+  const { t } = useTranslation("hero");
+
   return (
     <div className="hero-container">
-      <h1 className="hero-title">Noir cookbook</h1>
-      <p className="hero-description">
-        Ejemplos de uso de Noir.
-      </p>
-      <p className="hero-description">
-        Avanza paso a paso el ejemplo para aprender el flujo de creacion y verificacion de pruebas ZK
-      </p>
+      <h1 className="hero-title">{t("title")}</h1>
+      <p className="hero-description">{t("description1")}</p>
+      <p className="hero-description">{t("description2")}</p>
     </div>
   );
 }
