@@ -17,7 +17,7 @@ interface ProofFormProps {
 }
 
 function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("proofForm");
   const [inputs, setInputs] = useState<{ [key: string]: number }>({
     balance: 200,
     payment: 100,
@@ -51,10 +51,10 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
         const generatedProof = await backend.generateProof(witness);
 
         onProofGenerated(generatedProof);
-        setStatus(t("proofForm.successMessage"));
+        setStatus(t("successMessage"));
       }
     } catch (error) {
-      setStatus(`${t("proofForm.errorPrefix")}: ${error instanceof Error ? error.message : t("proofForm.unknownError")}`);
+      setStatus(`${t("errorPrefix")}: ${error instanceof Error ? error.message : t("unknownError")}`);
     } finally {
       setIsLoading(false);
     }
@@ -62,13 +62,13 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
 
   return (
     <div className="form-container">
-      <h1 className="form-title">{t("proofForm.title")}</h1>
-      <p className="form-subtitle">{t("proofForm.suggestedValues")}</p>
-      <p>{t("proofForm.exampleValues")}</p>
+      <h1 className="form-title">{t("title")}</h1>
+      <p className="form-subtitle">{t("suggestedValues")}</p>
+      <p>{t("exampleValues")}</p>
       {acir.program.abi.parameters.map((param) => (
         <div key={param.name} className="form-group">
           <label>
-            {t(`proofForm.parameters.${param.name}`)}:
+            {t(`parameters.${param.name}`)}:
             <input
               type="number"
               value={inputs[param.name] || 0}
@@ -79,10 +79,10 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
         </div>
       ))}
       <button onClick={handleCreateProof} className="form-button" disabled={isLoading}>
-        {isLoading ? t("proofForm.creatingProof") : t("proofForm.createProof")}
+        {isLoading ? t("creatingProof") : t("createProof")}
       </button>
       {status && (
-        <div className={`form-status ${status.startsWith(t("proofForm.errorPrefix")) ? "error" : "success"}`}>
+        <div className={`form-status ${status.startsWith(t("errorPrefix")) ? "error" : "success"}`}>
           {status}
         </div>
       )}
