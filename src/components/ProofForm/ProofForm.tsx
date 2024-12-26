@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CompiledCircuit, Noir } from "@noir-lang/noir_js";
 import { ProofData, UltraHonkBackend } from "@aztec/bb.js";
 import "./ProofForm.css";
+import { useTranslation } from "react-i18next";
 
 import initNoirC from "@noir-lang/noirc_abi";
 import initACVM from "@noir-lang/acvm_js";
@@ -16,7 +17,13 @@ interface ProofFormProps {
 }
 
 function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
-  const [inputs, setInputs] = useState<{ [key: string]: number }>({ balance: 200, payment: 100, limit: 300, fee_rate: 10 });
+  const { t } = useTranslation();
+  const [inputs, setInputs] = useState<{ [key: string]: number }>({
+    balance: 200,
+    payment: 100,
+    limit: 300,
+    fee_rate: 10,
+  });
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,20 +41,20 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
     onProofGenerated(null);
 
     try {
-      if(acir){
+      if (acir) {
         const acidCircuit = acir.program as CompiledCircuit;
         const params = inputs;
         const noir = new Noir(acidCircuit);
         const backend = new UltraHonkBackend(acidCircuit.bytecode);
-  
+
         const { witness } = await noir.execute(params);
         const generatedProof = await backend.generateProof(witness);
-  
+
         onProofGenerated(generatedProof);
-        setStatus("¡Prueba creada correctamente!");
+        setStatus(t("proofForm.successMessage"));
       }
     } catch (error) {
-      setStatus(`Error: ${error instanceof Error ? error.message : "Unknown error"}`);
+      setStatus(`${t("proofForm.errorPrefix")}: ${error instanceof Error ? error.message : t("proofForm.unknownError")}`);
     } finally {
       setIsLoading(false);
     }
@@ -55,13 +62,13 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
 
   return (
     <div className="form-container">
-      <h1 className="form-title">Paso 2: Probá</h1>
-      <p className="form-subtitle">Valores sugeridos para el ejemplo base:</p>
-      <p>balance: 200, payment: 100, limit: 300, fee_rate(%): 10</p>
+      <h1 className="form-title">{t("proofForm.title")}</h1>
+      <p className="form-subtitle">{t("proofForm.suggestedValues")}</p>
+      <p>{t("proofForm.exampleValues")}</p>
       {acir.program.abi.parameters.map((param) => (
         <div key={param.name} className="form-group">
           <label>
-            {param.name.charAt(0).toUpperCase() + param.name.slice(1)}:
+            {t(`proofForm.parameters.${param.name}`)}:
             <input
               type="number"
               value={inputs[param.name] || 0}
@@ -72,10 +79,10 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
         </div>
       ))}
       <button onClick={handleCreateProof} className="form-button" disabled={isLoading}>
-        {isLoading ? "Creando prueba..." : "Crear Prueba"}
+        {isLoading ? t("proofForm.creatingProof") : t("proofForm.createProof")}
       </button>
       {status && (
-        <div className={`form-status ${status.startsWith("Error") ? "error" : "success"}`}>
+        <div className={`form-status ${status.startsWith(t("proofForm.errorPrefix")) ? "error" : "success"}`}>
           {status}
         </div>
       )}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ProofData, UltraHonkBackend } from "@aztec/bb.js";
 import "./ProofVerifier.css";
+import { useTranslation } from "react-i18next";
 
 import initNoirC from "@noir-lang/noirc_abi";
 import initACVM from "@noir-lang/acvm_js";
@@ -17,6 +18,7 @@ type ProofVerifierProps = {
 };
 
 function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
+  const { t } = useTranslation();
   const [inputValue, setInputValue] = useState<string>(proof ? JSON.stringify([...proof.proof]) : "");
   const [publicInputs, setPublicInputs] = useState<{ [key: string]: number }>({});
   const [status, setStatus] = useState<string | null>(null);
@@ -46,7 +48,7 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
 
   async function handleVerifyProof(): Promise<void> {
     if (!proof) {
-      setStatus("There is no proof to verify.");
+      setStatus(t("proofVerifier.noProof"));
       return;
     }
 
@@ -63,10 +65,10 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
           proof: proof.proof,
         });
 
-        setStatus(isValid ? "¡Prueba verificada correctamente!" : "Prueba inválida.");
+        setStatus(isValid ? t("proofVerifier.successMessage") : t("proofVerifier.invalidProof"));
       }
     } catch (error) {
-      setStatus(`Verification error: ${error instanceof Error ? error.message : "Unknown error"}`);
+      setStatus(`${t("proofVerifier.errorPrefix")}: ${error instanceof Error ? error.message : t("proofVerifier.unknownError")}`);
     } finally {
       setIsLoading(false);
     }
@@ -74,15 +76,15 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
 
   return (
     <div className="proof-verifier-container">
-      <h1 className="proof-verifier-title">Paso 3: Verificá</h1>
-      <h2 className="proof-verifier-subtitle">Prueba</h2>
+      <h1 className="proof-verifier-title">{t("proofVerifier.title")}</h1>
+      <h2 className="proof-verifier-subtitle">{t("proofVerifier.subtitle")}</h2>
 
       <div className="proof-input-container">
         <textarea
           className="proof-input-textarea"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder="Aqui aparecerá la prueba en formato Uint8Array..."
+          placeholder={t("proofVerifier.placeholder")}
         />
       </div>
 
@@ -91,7 +93,7 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
         .map((param) => (
           <div key={param.name} className="form-group">
             <label>
-              {param.name.charAt(0).toUpperCase() + param.name.slice(1)}:
+              {t(`proofVerifier.parameters.${param.name}`)}:
               <input
                 type="number"
                 value={publicInputs[param.name] || ""}
@@ -104,10 +106,10 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
 
       <div className="verify-container">
         <button onClick={handleVerifyProof} className="verify-button" disabled={!proof || isLoading}>
-          {isLoading ? "Verificando..." : "Verificar Prueba"}
+          {isLoading ? t("proofVerifier.verifying") : t("proofVerifier.verify")}
         </button>
         {status && (
-          <div className={`verify-status ${status.startsWith("Prueba inválida") ? "error" : "success"}`}>
+          <div className={`verify-status ${status.startsWith(t("proofVerifier.invalidProof")) ? "error" : "success"}`}>
             {status}
           </div>
         )}
