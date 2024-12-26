@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { CompiledCircuit, Noir } from "@noir-lang/noir_js";
 import { ProofData, UltraHonkBackend } from "@aztec/bb.js";
 import "./ProofForm.css";
@@ -26,13 +26,18 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
   });
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const compileButtonRef = useRef<HTMLDivElement>(null);
 
   if (!acir) {
     return null;
   }
 
-  const handleInputChange = (name: string, value: number) => {
-    setInputs((prev) => ({ ...prev, [name]: value }));
+  const handleInputChange = (name: string, value: string) => {
+    const numericValue = parseInt(value);
+    console.log({value, numericValue, name})
+    if (!isNaN(numericValue) || value === '') {
+      setInputs((prev) => ({ ...prev, [name]: numericValue }));
+    }
   };
 
   async function handleCreateProof(): Promise<void> {
@@ -46,12 +51,12 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
         const params = inputs;
         const noir = new Noir(acidCircuit);
         const backend = new UltraHonkBackend(acidCircuit.bytecode);
-
         const { witness } = await noir.execute(params);
         const generatedProof = await backend.generateProof(witness);
 
         onProofGenerated(generatedProof);
         setStatus(t("successMessage"));
+        handleScrollToDetails();
       }
     } catch (error) {
       setStatus(`${t("errorPrefix")}: ${error instanceof Error ? error.message : t("unknownError")}`);
@@ -59,6 +64,12 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
       setIsLoading(false);
     }
   }
+
+  const handleScrollToDetails = () => {
+    if (compileButtonRef.current) {
+      compileButtonRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="form-container">
@@ -71,9 +82,9 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
           <label>
             {t(`parameters.${param.name}`)}:
             <input
-              type="number"
+              type="text"
               value={inputs[param.name] || 0}
-              onChange={(e) => handleInputChange(param.name, Number(e.target.value))}
+              onChange={(e) => handleInputChange(param.name, e.target.value)}
               className="form-input"
             />
           </label>
@@ -82,11 +93,15 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
       <button onClick={handleCreateProof} className="form-button" disabled={isLoading}>
         {isLoading ? t("creatingProof") : t("createProof")}
       </button>
+
       {status && (
         <div className={`form-status ${status.startsWith(t("errorPrefix")) ? "error" : "success"}`}>
           {status}
         </div>
       )}
+      <div ref={compileButtonRef}>
+        {/* Contenido adicional */}
+      </div>
     </div>
   );
 }

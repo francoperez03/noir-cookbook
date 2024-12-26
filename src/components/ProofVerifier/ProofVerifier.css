@@ -76,11 +76,11 @@
   padding: 10px;
   border-radius: 4px;
   text-align: center;
-  width: 100%;
+  width: 39%;
 }
 
 .verify-status.success {
-  background-color: #52c41a;
+  background-color: #28a745;
   color: #fff;
 }
 
