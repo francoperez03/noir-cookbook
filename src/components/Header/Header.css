@@ -1,0 +1,25 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+  max-height: 45px; 
+  padding: 5px;
+  align-items: center;
+}
+
+.header-tab {
+  padding: 8px 16px;
+  margin: 0 8px;
+  font-size: 14px;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-tab.active {
+  background-color: #2d89ef;
+  color: #fff;
+}

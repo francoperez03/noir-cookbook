@@ -104,6 +104,7 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
       <div className="editor-wrapper">
         {circuitCode && (
           <div className="editor-container">
+            <h3 className="editor-title">Circuito en Noir</h3>
             <MonacoEditor
               height="100%"
               defaultLanguage="rust"
@@ -122,6 +123,7 @@ function CircuitCompiler({ mainUrl, nargoTomlUrl, onCompile }: CircuitCompilerPr
 
         {acir && (
           <div className="editor-container">
+            <h3 className="editor-title">ACIR generado</h3>
             <MonacoEditor
               height="100%"
               defaultLanguage="json"

@@ -3,7 +3,6 @@
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
-  margin-top: 10%;
   border-radius: 8px;
 }
 
@@ -39,7 +38,6 @@
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #2e2e3e;
   color: #fff;
 }
 
