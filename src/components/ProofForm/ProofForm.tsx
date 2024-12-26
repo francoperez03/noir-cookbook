@@ -63,6 +63,7 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
   return (
     <div className="form-container">
       <h1 className="form-title">{t("title")}</h1>
+      <p className="form-explanation">{t("explanation")}</p>
       <p className="form-subtitle">{t("suggestedValues")}</p>
       <p>{t("exampleValues")}</p>
       {acir.program.abi.parameters.map((param) => (

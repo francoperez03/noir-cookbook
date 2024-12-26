@@ -78,7 +78,7 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
     <div className="proof-verifier-container">
       <h1 className="proof-verifier-title">{t("title")}</h1>
       <h2 className="proof-verifier-subtitle">{t("subtitle")}</h2>
-
+      <p className="proof-verifier-explanation">{t("explanation")}</p>
       <div className="proof-input-container">
         <textarea
           className="proof-input-textarea"

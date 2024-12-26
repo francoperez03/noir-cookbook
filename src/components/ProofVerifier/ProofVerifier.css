@@ -19,6 +19,15 @@
   text-align: center;
 }
 
+.proof-verifier-explanation {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #ccc;
+  text-align: center;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
 .proof-input-container {
   width: 70%;
   margin-bottom: 20px;
