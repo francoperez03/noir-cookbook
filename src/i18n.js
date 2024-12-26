@@ -20,8 +20,28 @@ const resources = {
     },
     hero: {
       title: "Noir Cookbook",
-      description1: "Examples of Noir usage.",
-      description2: "Step by step through the example to learn the flow of creating and verifying ZK proofs."
+      description1: "Examples of using Noir.",
+      description2: "Step by step through the example to learn the flow of creating and verifying ZK proofs.",
+      circuitExplanation: "Circuit explanation:",
+      circuitInputs: "Circuit inputs:",
+      balance: "balance",
+      balanceDescription: "Available amount (private).",
+      payment: "payment",
+      paymentDescription: "Amount to be paid (private).",
+      limit: "limit",
+      limitDescription: "Maximum allowed limit for a payment (private).",
+      fee_rate: "fee_rate",
+      feeRateDescription: "Commission rate in percentage (private).",
+      circuitLogic: "Circuit logic:",
+      feeCalculation: "Calculate the fee using the formula:",
+      feeFormula: "fee = payment × fee_rate / 100",
+      totalPaymentCalculation: "Calculate the total payment by adding the fee to the payment amount:",
+      totalPaymentFormula: "total_payment = payment + fee",
+      assertConditions: "Verify two conditions using assert (these conditions must be met for the circuit to be valid):",
+      balanceCondition: "The balance must be sufficient to cover the total payment:",
+      balanceFormula: "balance ≥ total_payment",
+      limitCondition: "The total payment must not exceed the allowed limit:",
+      limitFormula: "total_payment ≤ limit"
     },
     circuitCompiler: {
       title: "Step 1: Compile",
@@ -91,7 +111,27 @@ const resources = {
     hero: {
       title: "Noir Cookbook",
       description1: "Ejemplos de uso de Noir.",
-      description2: "Avanza paso a paso el ejemplo para aprender el flujo de creación y verificación de pruebas ZK."
+      description2: "Avanza paso a paso el ejemplo para aprender el flujo de creación y verificación de pruebas ZK.",
+      circuitExplanation: "Explicación del circuito:",
+      circuitInputs: "Entradas del circuito:",
+      balance: "balance",
+      balanceDescription: "Monto disponible (privado).",
+      payment: "payment",
+      paymentDescription: "Monto que se quiere pagar (privado).",
+      limit: "limit",
+      limitDescription: "Límite máximo permitido para un pago (privado).",
+      fee_rate: "fee_rate",
+      feeRateDescription: "Tasa de comisión en porcentaje (privado).",
+      circuitLogic: "Lógica del circuito:",
+      feeCalculation: "Calcula la comisión (fee) usando la fórmula:",
+      feeFormula: "fee = payment × fee_rate / 100",
+      totalPaymentCalculation: "Calcula el pago total (total_payment) sumando la comisión al monto del pago:",
+      totalPaymentFormula: "total_payment = payment + fee",
+      assertConditions: "Verifica dos condiciones usando assert (estas condiciones deben cumplirse para que el circuito sea válido):",
+      balanceCondition: "El balance debe ser suficiente para cubrir el pago total:",
+      balanceFormula: "balance ≥ total_payment",
+      limitCondition: "El pago total no debe exceder el límite permitido:",
+      limitFormula: "total_payment ≤ limit"
     },
     circuitCompiler: {
       title: "Paso 1: Compilá",
@@ -147,13 +187,13 @@ const resources = {
 };
 
 i18n
-  .use(LanguageDetector) // Detecta el idioma del navegador
-  .use(initReactI18next) // Inicializa con React
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "en", // Idioma predeterminado si no se detecta uno
+    fallbackLng: "en",
     interpolation: {
-      escapeValue: false, // React ya protege contra XSS
+      escapeValue: false,
     },
   });
 

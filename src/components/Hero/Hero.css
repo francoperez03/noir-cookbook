@@ -1,6 +1,8 @@
 .hero-container {
   text-align: center;
   padding: 20px;
+  color: #ffffff;
+  min-height: 100vh;
 }
 
 .hero-title {
@@ -8,6 +10,7 @@
   font-weight: bold;
   margin-bottom: 10px;
   color: #ffffff;
+  text-align: center;
 }
 
 .hero-description {
@@ -16,4 +19,89 @@
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+}
+
+.hero-explanation {
+  padding: 20px;
+  margin-top: 40px;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.subsection-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.input-list, .logic-list, .conditions-list {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.input-list li, .logic-list li {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.conditions-list li {
+  margin-bottom: 20px;
+}
+
+.code-tag {
+  background-color: #333333;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.formula-container {
+  background-color: #2d2d2d;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-family: 'Times New Roman', serif;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+/* Estilos para listas anidadas */
+.logic-list > li {
+  margin-bottom: 30px;
+}
+
+.conditions-list {
+  margin-top: 15px;
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  .hero-explanation {
+    padding: 15px;
+  }
+  
+  .formula-container {
+    padding: 10px;
+    font-size: 1em;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .subsection-title {
+    font-size: 1.3rem;
+  }
 }
