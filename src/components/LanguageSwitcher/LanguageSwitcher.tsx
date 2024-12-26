@@ -11,7 +11,7 @@ function LanguageSwitcher() {
 
   return (
     <button className="language-toggle" onClick={toggleLanguage}>
-      {i18n.language === "en" ? "Español" : "English"}
+      {i18n.language === "en" ? "Cambiar a Español" : "Switch to English"}
     </button>
   );
 }

@@ -16,12 +16,12 @@ function Header({ activeTab, onTabChange }: HeaderProps) {
         >
           Proofs
         </button>
-        <button
+        {/* <button
           className={`header-tab ${activeTab === "merkleTree" ? "active" : ""}`}
           onClick={() => onTabChange("merkleTree")}
         >
           Merkle Tree
-        </button>
+        </button> */}
       </div>
       <LanguageSwitcher />
     </div>
