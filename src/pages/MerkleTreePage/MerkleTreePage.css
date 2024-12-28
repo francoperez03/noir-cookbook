@@ -43,41 +43,36 @@
   margin-top: 20px;
 }
 
-.nodes-list ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.tree-root {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.tree-visualization {
-  margin-top: 20px;
-}
-
-.tree-level {
-  margin-bottom: 20px;
-}
-
-.level-nodes {
+.nodes-grid {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
 }
 
-.node {
-  padding: 10px;
-  background-color: #2d2d2d;
-  color: #fff;
-  border: 1px solid #444;
-  border-radius: 5px;
-  font-size: 0.9rem;
+.merkle-wrapper {
+  display: flex;
+  gap: 20px;
+  width: 100%;
   text-align: center;
-  word-break: break-word;
-  max-width: 150px;
 }
 
+.merkle-left,
+.merkle-right {
+  flex: 1;
+  min-width: 300px;
+  max-width: 50%;
+}
+
+.merkle-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.merkle-right {
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 20px;
+  overflow: auto;
+}

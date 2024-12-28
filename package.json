@@ -16,9 +16,11 @@
     "@noir-lang/noir_wasm": "^1.0.0-beta.0",
     "i18next": "^24.2.0",
     "i18next-browser-languagedetector": "^8.0.2",
+    "lucide-react": "^0.469.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-i18next": "^15.2.0"
+    "react-i18next": "^15.2.0",
+    "react-scan": "^0.0.54"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

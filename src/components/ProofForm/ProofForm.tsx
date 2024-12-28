@@ -34,7 +34,6 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
 
   const handleInputChange = (name: string, value: string) => {
     const numericValue = parseInt(value);
-    console.log({value, numericValue, name})
     if (!isNaN(numericValue) || value === '') {
       setInputs((prev) => ({ ...prev, [name]: numericValue }));
     }

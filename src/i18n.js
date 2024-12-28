@@ -7,6 +7,8 @@ const resources = {
   en: {
     merkle: {
       title: "Merkle Tree Builder",
+      introduction: "A Merkle Tree is a binary tree data structure that efficiently verifies the integrity and consistency of large datasets. Each leaf in the tree contains a hash value, and the intermediate nodes represent combinations of the hashes of their child nodes. The root of the tree, known as the Merkle Root, summarizes all the information contained in the leaves.",
+      invitation: "Below, you can create your own Merkle Tree. Try adding leaves and explore how the root and different levels of the tree are generated.",
       enterNodeValue: "Enter a value for the node",
       addNode: "Add Node",
       addingNode: "Adding...",
@@ -16,7 +18,8 @@ const resources = {
       emptyTree: "The tree is currently empty.",
       treeVisualization: "Merkle Tree Visualization",
       level: "Level",
-      errorBuildingTree: "Error building Merkle Tree:"
+      errorBuildingTree: "Error building Merkle Tree:",
+      node: "Value"
     },
     hero: {
       title: "Noir Cookbook",
@@ -99,17 +102,20 @@ const resources = {
   es: {
     merkle: {
       title: "Creador de Árbol Merkle",
+      introduction: "Un Árbol Merkle es una estructura de datos en forma de árbol binario que permite verificar la integridad y consistencia de grandes cantidades de datos de manera eficiente. Cada hoja del árbol contiene un valor hash y los nodos intermedios representan combinaciones de los hashes de sus nodos hijos. La raíz del árbol, conocida como Merkle Root, resume toda la información contenida en las hojas.",
+      invitation: "Aquí abajo podés crear tu propio Árbol Merkle. Probá añadiendo hojas y explorá cómo se genera la raíz y los diferentes niveles del árbol.",
       enterNodeValue: "Ingresá el valor de la hoja",
       addNode: "Añadir hoja",
       addingNode: "Añadiendo...",
       nodeValues: "Valor de las hojas:",
       noNodesYet: "Ingresá un valor",
       treeRoot: "Raíz del árbol:",
-      emptyTree: "De momento el árbol está vacío.",
+      emptyTree: "Añadí valores para ver el árbol.",
       treeVisualization: "Árbol generado:",
       level: "Nivel",
-      errorBuildingTree: "Error al construir el Árbol Merkle:"
-    },
+      errorBuildingTree: "Error al construir el Árbol Merkle:",
+      node: "Valor"
+    },    
     hero: {
       title: "Noir Cookbook",
       description1: "Ejemplos de uso de Noir.",

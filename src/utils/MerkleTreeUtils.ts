@@ -37,3 +37,42 @@ export async function buildMerkleTree(
 
   return { root: currentLevel[0], levels };
 }
+
+export function getHashPath(
+  index: number,
+  levels: Uint8Array[][]
+): Uint8Array[] {
+  const hashPath: Uint8Array[] = [];
+  let currentIndex = index;
+
+  for (let i = 0; i < levels.length - 1; i++) {
+    const level = levels[i];
+    const isRightNode = currentIndex % 2 === 1;
+    const siblingIndex = isRightNode ? currentIndex - 1 : currentIndex + 1;
+
+    if (siblingIndex < level.length) {
+      hashPath.push(level[siblingIndex]);
+    }
+
+    currentIndex = Math.floor(currentIndex / 2);
+  }
+
+  return hashPath;
+}
+
+export function getPathToRoot(
+  index: number,
+  levels: Uint8Array[][]
+): Uint8Array[] {
+  const path: Uint8Array[] = [];
+  let currentIndex = index;
+
+  for (let i = 0; i < levels.length; i++) {
+    if (currentIndex < levels[i].length) {
+      path.push(levels[i][currentIndex]);
+    }
+    currentIndex = Math.floor(currentIndex / 2);
+  }
+
+  return path;
+}

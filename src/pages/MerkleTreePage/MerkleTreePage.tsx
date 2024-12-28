@@ -1,14 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./MerkleTreePage.css";
-import { buildMerkleTree, toHexString } from "../../utils/MerkleTreeUtils";
+import {
+  buildMerkleTree,
+  getHashPath,
+  getPathToRoot,
+} from "../../utils/MerkleTreeUtils";
 import { useTranslation } from "react-i18next";
+import MerkleTree from "../../components/MerkleTree/MerkleTree";
+import NodeCard from "../../components/NodeCard/NodeCard";
 
 function MerkleTreePage() {
   const { t } = useTranslation("merkle");
   const [nodes, setNodes] = useState<string[]>([]);
   const [newNode, setNewNode] = useState<string>("");
-  const [merkleTree, setMerkleTree] = useState<{ root: Uint8Array; levels: Uint8Array[][] } | null>(null);
+  const [merkleTree, setMerkleTree] = useState<{
+    root: Uint8Array;
+    levels: Uint8Array[][];
+  } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [highlightedHashes, setHighlightedHashes] = useState<Uint8Array[]>([]);
+  const [pathToRootHashes, setPathToRootHashes] = useState<Uint8Array[]>([]);
 
   async function handleAddNode() {
     if (newNode.trim() === "") return;
@@ -26,62 +37,75 @@ function MerkleTreePage() {
       setNewNode("");
     }
   }
-
   return (
     <div className="merkle-tree-page">
       <h1 className="merkle-title">{t("title")}</h1>
+      <p className="merkle-introduction">{t("introduction")}</p>
+      <p className="merkle-invitation">{t("invitation")}</p>
 
-      <div className="add-node-container">
-        <input
-          type="text"
-          value={newNode}
-          onChange={(e) => setNewNode(e.target.value)}
-          placeholder={t("enterNodeValue")}
-          className="add-node-input"
-          disabled={isLoading}
-        />
-        <button onClick={handleAddNode} className="add-node-button" disabled={isLoading}>
-          {isLoading ? t("addingNode") : t("addNode")}
-        </button>
-      </div>
+      <div className="merkle-wrapper">
+        <div className="merkle-left">
+          <div className="add-node-container">
+            <input
+              type="text"
+              value={newNode}
+              onChange={(e) => setNewNode(e.target.value)}
+              placeholder={t("enterNodeValue")}
+              className="add-node-input"
+              disabled={isLoading}
+            />
+            <button
+              onClick={handleAddNode}
+              className="add-node-button"
+              disabled={isLoading}
+            >
+              {isLoading ? t("addingNode") : t("addNode")}
+            </button>
+          </div>
+          <div className="nodes-list">
+            <h3>{t("nodeValues")}</h3>
+            {nodes.length > 0 ? (
+              <div className="nodes-grid">
+                {nodes.map((node, index) => {
+                  const hashPath = getHashPath(index, merkleTree?.levels || []);
+                  const pathToRoot = getPathToRoot(
+                    index,
+                    merkleTree?.levels || []
+                  );
 
-      <div className="nodes-list">
-        <h3>{t("nodeValues")}</h3>
-        {nodes.length > 0 ? (
-          <ul>
-            {nodes.map((node, index) => (
-              <li key={index}>{node}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>{t("noNodesYet")}</p>
-        )}
-      </div>
-
-      <div className="tree-root">
-        <h3>{t("treeRoot")}</h3>
-        <p>{merkleTree ? toHexString(merkleTree.root) : t("emptyTree")}</p>
-      </div>
-
-      {merkleTree && (
-        <div className="tree-visualization">
-          <h3>{t("treeVisualization")}</h3>
-          <div className="tree-levels">
-            {merkleTree.levels.map((level, levelIndex) => (
-              <div key={levelIndex} className="tree-level">
-                <h4>{`${t("level")} ${levelIndex}`}</h4>
-                <div className="level-nodes">
-                  {level.map((hash, hashIndex) => (
-                    <div key={hashIndex} className="node">
-                      {toHexString(hash)}
-                    </div>
-                  ))}
-                </div>
+                  return (
+                    <NodeCard
+                      key={index}
+                      node={node}
+                      index={index}
+                      hashPath={hashPath}
+                      pathToRoot={pathToRoot}
+                      onMouseEnter={() => {
+                        setHighlightedHashes(hashPath);
+                        setPathToRootHashes(pathToRoot);
+                      }}
+                      onMouseLeave={() => {
+                        setHighlightedHashes([]);
+                        setPathToRootHashes([]);
+                      }}
+                    />
+                  );
+                })}
               </div>
-            ))}
+            ) : (
+              <p>{t("noNodesYet")}</p>
+            )}
           </div>
         </div>
-      )}
+
+        <div className="merkle-right">
+          <MerkleTree
+            merkleTree={merkleTree}
+            highlightedHashes={highlightedHashes}
+            pathToRoot={pathToRootHashes}
+          />
+        </div>
+      </div>
     </div>
   );
 }
