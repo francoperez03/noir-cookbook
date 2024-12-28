@@ -88,3 +88,17 @@
   background-color: #ff4d4f;
   color: #fff;
 }
+
+.proof-verifier-public-inputs {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.proof-verifier-no-public-inputs {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+

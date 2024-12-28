@@ -20,7 +20,7 @@ type ProofVerifierProps = {
 function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
   const { t } = useTranslation("proofVerifier");
   const [inputValue, setInputValue] = useState<string>(proof ? JSON.stringify([...proof.proof]) : "");
-  const [publicInputs, setPublicInputs] = useState<{ [key: string]: number }>({});
+  const [publicInputs, setPublicInputs] = useState<{ [key: string]: number }>({ fee_rate: 10 });
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,8 +38,11 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
     }
   }
 
-  function handlePublicInputChange(name: string, value: number) {
-    setPublicInputs((prev) => ({ ...prev, [name]: value }));
+  function handlePublicInputChange(name: string, value: string) {
+    const numericValue = parseInt(value);
+    if (!isNaN(numericValue) || value === '') {
+      setPublicInputs((prev) => ({ ...prev, [name]: numericValue }));
+    }
   }
 
   useEffect(() => {
@@ -68,17 +71,44 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
         setStatus(isValid ? t("successMessage") : t("invalidProof"));
       }
     } catch (error) {
-      setStatus(`${t("proofVerifier.errorPrefix")}: ${error instanceof Error ? error.message : t("unknownError")}`);
+      setStatus(`${t("errorPrefix")}: ${error instanceof Error ? error.message : t("unknownError")}`);
     } finally {
       setIsLoading(false);
     }
   }
 
+  const hasPublicInputs = acir?.program.abi.parameters.some((param) => param.visibility === "public");
+
   return (
     <div className="proof-verifier-container">
       <h1 className="proof-verifier-title">{t("title")}</h1>
-      <h2 className="proof-verifier-subtitle">{t("subtitle")}</h2>
       <p className="proof-verifier-explanation">{t("explanation")}</p>
+
+      {hasPublicInputs ? (
+        <h2 className="proof-verifier-public-inputs">{t("publicInputs")}</h2>
+      ) : (
+        <h2 className="proof-verifier-no-public-inputs">{t("noPublicInputs")}</h2>
+      )}
+
+      {hasPublicInputs &&
+        acir?.program.abi.parameters
+          .filter((param) => param.visibility === "public")
+          .map((param) => (
+            <div key={param.name} className="form-group">
+              <label>
+                {t(`parameters.${param.name}`)}:
+                <input
+                  type="text"
+                  value={publicInputs[param.name] || ""}
+                  onChange={(e) => handlePublicInputChange(param.name, e.target.value)}
+                  className="form-input"
+                />
+              </label>
+            </div>
+      ))}
+
+      <h2 className="proof-verifier-subtitle">{t("subtitle")}</h2>
+
       <div className="proof-input-container">
         <textarea
           className="proof-input-textarea"
@@ -87,22 +117,6 @@ function ProofVerifier({ proof, acir, onProofChange }: ProofVerifierProps) {
           placeholder={t("placeholder")}
         />
       </div>
-
-      {acir?.program.abi.parameters
-        .filter((param) => param.visibility === "public")
-        .map((param) => (
-          <div key={param.name} className="form-group">
-            <label>
-              {t(`parameters.${param.name}`)}:
-              <input
-                type="number"
-                value={publicInputs[param.name] || ""}
-                onChange={(e) => handlePublicInputChange(param.name, Number(e.target.value))}
-                className="form-input"
-              />
-            </label>
-          </div>
-        ))}
 
       <div className="verify-container">
         <button onClick={handleVerifyProof} className="verify-button" disabled={!proof || isLoading}>

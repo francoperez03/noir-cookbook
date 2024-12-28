@@ -86,6 +86,8 @@ const resources = {
       errorPrefix: "Verification error",
       unknownError: "Unknown error occurred",
       explanation: "Below, you can see the generated proof. The next step is to verify that it was created correctly. If the proof includes public inputs, fields for entering these inputs will appear below. By clicking 'Verify Proof', the system will validate whether the proof is correct. Note: If you manually edit the proof in the editor or modify the public inputs, the verification will fail.",
+      publicInputs: "Public Inputs",
+      noPublicInputs: "This proof has no public inputs.",
       parameters: {
         balance: "Balance",
         payment: "Payment",
@@ -97,7 +99,7 @@ const resources = {
   es: {
     merkle: {
       title: "Creador de Árbol Merkle",
-      enterNodeValue: "Ingrese el valor de la hoja",
+      enterNodeValue: "Ingresá el valor de la hoja",
       addNode: "Añadir hoja",
       addingNode: "Añadiendo...",
       nodeValues: "Valor de las hojas:",
@@ -111,7 +113,7 @@ const resources = {
     hero: {
       title: "Noir Cookbook",
       description1: "Ejemplos de uso de Noir.",
-      description2: "Avanza paso a paso el ejemplo para aprender el flujo de creación y verificación de pruebas ZK.",
+      description2: "Avanzá paso a paso el ejemplo para aprender el flujo de creación y verificación de pruebas ZK.",
       circuitExplanation: "Explicación del circuito:",
       circuitInputs: "Entradas del circuito:",
       balance: "balance",
@@ -121,16 +123,16 @@ const resources = {
       limit: "limit",
       limitDescription: "Límite máximo permitido para un pago (privado).",
       fee_rate: "fee_rate",
-      feeRateDescription: "Tasa de comisión en porcentaje (privado).",
+      feeRateDescription: "Tasa de comisión en porcentaje (público).",
       circuitLogic: "Lógica del circuito:",
-      feeCalculation: "Calcula la comisión (fee) usando la fórmula:",
+      feeCalculation: "Calculá la comisión (fee) usando la fórmula:",
       feeFormula: "fee = payment × fee_rate / 100",
-      totalPaymentCalculation: "Calcula el pago total (total_payment) sumando la comisión al monto del pago:",
+      totalPaymentCalculation: "Calculá el pago total (total_payment) sumando la comisión al monto del pago:",
       totalPaymentFormula: "total_payment = payment + fee",
-      assertConditions: "Verifica dos condiciones usando assert (estas condiciones deben cumplirse para que el circuito sea válido):",
-      balanceCondition: "El balance debe ser suficiente para cubrir el pago total:",
+      assertConditions: "Verificá dos condiciones usando assert (estas condiciones deben cumplirse para que el circuito sea válido):",
+      balanceCondition: "El balance tiene que ser suficiente para cubrir el pago total:",
       balanceFormula: "balance ≥ total_payment",
-      limitCondition: "El pago total no debe exceder el límite permitido:",
+      limitCondition: "El pago total no tiene que exceder el límite permitido:",
       limitFormula: "total_payment ≤ limit"
     },
     circuitCompiler: {
@@ -148,7 +150,7 @@ const resources = {
       explanation: "Al presionar el botón \"Compilar Circuito\", el compilador genera el archivo ACIR (Representación Intermedia de Circuito Abstracto), que es una representación de bajo nivel del circuito utilizada para generar y verificar pruebas de conocimiento cero."
     },
     proofForm: {
-      title: "Paso 2: Prueba",
+      title: "Paso 2: Probá",
       suggestedValues: "Valores sugeridos para el ejemplo base:",
       exampleValues: "balance: 200, payment: 100, limit: 300, fee_rate(%): 10",
       creatingProof: "Creando prueba...",
@@ -156,7 +158,7 @@ const resources = {
       successMessage: "¡Prueba creada correctamente!",
       errorPrefix: "Error",
       unknownError: "Ocurrió un error desconocido",
-      explanation: "Ahora que está generado el ACIR, se puede generar una prueba usando como parámetros valores que satisfagan el circuito. En el caso de que los parámetros no cumplan con las restricciones del circuito, la prueba no puede ser generada.",
+      explanation: "Ahora que está generado el ACIR, se puede generar una prueba usando como parámetros valores que satisfagan el circuito. En el caso de que los parámetros no cumplan con las restricciones del circuito, la prueba no se va a generar.",
       parameters: {
         balance: "Saldo",
         payment: "Pago",
@@ -165,7 +167,7 @@ const resources = {
       }
     },
     proofVerifier: {
-      title: "Paso 3: Verificar",
+      title: "Paso 3: Verificá",
       subtitle: "Prueba",
       placeholder: "Aquí aparecerá la prueba en formato Uint8Array...",
       verifying: "Verificando...",
@@ -175,7 +177,10 @@ const resources = {
       noProof: "No hay prueba para verificar.",
       errorPrefix: "Error de verificación",
       unknownError: "Ocurrió un error desconocido",
-      explanation: "A continuación, puedes ver la prueba generada. El siguiente paso es verificar que fue creada correctamente. Si la prueba incluye inputs públicos, aparecerán campos para que los completes. Al presionar 'Verificar Prueba', el sistema comprobará si la prueba es válida. Nota: Si editas manualmente la prueba en el editor o modificas los inputs públicos, la verificación fallará.",
+      explanation: "A continuación, podes ver la prueba generada. El siguiente paso es verificar que fue creada correctamente. Si la prueba incluye inputs públicos, aparecerán campos para que completes. Al presionar 'Verificar Prueba', el sistema comprobará si la prueba es válida. Nota: Si editás manualmente la prueba en el editor o modificas los inputs públicos, la verificación fallará.",
+      unknownError: "Entradas publicas",
+      publicInputs: "Entradas públicas",
+      noPublicInputs: "Esta prueba no tiene entradas públicas.",
       parameters: {
         balance: "Saldo",
         payment: "Pago",
