@@ -8,7 +8,6 @@ import {
 import { useTranslation } from "react-i18next";
 import MerkleTree from "../../components/MerkleTree/MerkleTree";
 import NodeCard from "../../components/NodeCard/NodeCard";
-import VerifyMerkleTree from "../../components/VerifyMerkleTree/VerifyMerkleTree";
 
 function MerkleTreePage() {
   const { t } = useTranslation("merkle");
