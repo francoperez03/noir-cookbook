@@ -38,10 +38,20 @@ function MerkleTreePage() {
     }
   }
   return (
-    <div className="merkle-tree-page">
+    <div className="merkle-container">
       <h1 className="merkle-title">{t("title")}</h1>
-      <p className="merkle-introduction">{t("introduction")}</p>
-      <p className="merkle-invitation">{t("invitation")}</p>
+
+      {/* Explicación general */}
+      <p className="merkle-description">{t("introduction")}</p>
+
+      {/* Uso específico */}
+      <div className="merkle-use-case">
+        <h2 className="section-title">{t("useCaseTitle")}</h2>
+        <p className="use-case-description">{t("useCaseDescription")}</p>
+      </div>
+
+      <h2 className="section-title">{t("stepOneTitle")}</h2>
+      <p className="step-description">{t("stepOneDescription")}</p>
 
       <div className="merkle-wrapper">
         <div className="merkle-left">
@@ -96,6 +106,7 @@ function MerkleTreePage() {
               <p>{t("noNodesYet")}</p>
             )}
           </div>
+
         </div>
 
         <div className="merkle-right">
@@ -106,6 +117,9 @@ function MerkleTreePage() {
           />
         </div>
       </div>
+      {/* <h2 className="section-title">{t("stepTwoTitle")}</h2>
+      <p className="step-description">{t("stepTwoDescription")}</p>
+      <VerifyMerkleTree/> */}
     </div>
   );
 }

@@ -1,0 +1,81 @@
+.verify-merkle-tree-container {
+  text-align: center;
+  padding: 20px;
+  color: #ffffff;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.verify-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.verify-explanation {
+  font-size: 1rem;
+  color: #bbbbbb;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  text-align: left;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.input-container label {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-top: 10px;
+  display: block;
+}
+
+.input-container input,
+.input-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px 0;
+  font-size: 1rem;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #444;
+  color: #fff;
+}
+
+.input-container textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.verify-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.verify-button:hover {
+  background-color: #45a049;
+}
+
+.verification-status {
+  margin-top: 20px;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.verification-status.success {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.verification-status.error {
+  background-color: #f44336;
+  color: #fff;
+}

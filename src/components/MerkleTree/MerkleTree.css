@@ -110,8 +110,8 @@
 }
 
 .node.highlighted {
-  box-shadow: 0 0 5px 2px rgba(76, 175, 80, 0.8); /* Sombra verde suave */
-  transition: box-shadow 0.3s ease, transform 0.2s ease; /* Transiciones más fluidas */
+  box-shadow: 0 0 5px 2px rgba(76, 175, 80, 0.8);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
   transform: scale(1.01);
 }
 

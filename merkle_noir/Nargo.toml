@@ -1,0 +1,4 @@
+[package]
+name = "merkle_noir"
+type = "bin"
+authors = [""]
