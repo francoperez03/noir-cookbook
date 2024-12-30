@@ -5,22 +5,6 @@ import LanguageDetector from "i18next-browser-languagedetector";
 // Traducciones
 const resources = {
   en: {
-    merkle: {
-      title: "Merkle Tree Builder",
-      introduction: "A Merkle Tree is a binary tree data structure that efficiently verifies the integrity and consistency of large datasets. Each leaf in the tree contains a hash value, and the intermediate nodes represent combinations of the hashes of their child nodes. The root of the tree, known as the Merkle Root, summarizes all the information contained in the leaves.",
-      invitation: "Below, you can create your own Merkle Tree. Try adding leaves and explore how the root and different levels of the tree are generated.",
-      enterNodeValue: "Enter a value for the node",
-      addNode: "Add Node",
-      addingNode: "Adding...",
-      nodeValues: "Node Values:",
-      noNodesYet: "No nodes added yet.",
-      treeRoot: "Tree Root:",
-      emptyTree: "The tree is currently empty.",
-      treeVisualization: "Merkle Tree Visualization",
-      level: "Level",
-      errorBuildingTree: "Error building Merkle Tree:",
-      node: "Value"
-    },
     hero: {
       title: "Noir Cookbook",
       description1: "Examples of using Noir.",
@@ -97,25 +81,43 @@ const resources = {
         limit: "Limit",
         fee_rate: "Fee Rate (%)"
       }
-    }
-  },
-  es: {
+    },
     merkle: {
-      title: "Creador de Árbol Merkle",
-      introduction: "Un Árbol Merkle es una estructura de datos en forma de árbol binario que permite verificar la integridad y consistencia de grandes cantidades de datos de manera eficiente. Cada hoja del árbol contiene un valor hash y los nodos intermedios representan combinaciones de los hashes de sus nodos hijos. La raíz del árbol, conocida como Merkle Root, resume toda la información contenida en las hojas.",
-      invitation: "Aquí abajo podés crear tu propio Árbol Merkle. Probá añadiendo hojas y explorá cómo se genera la raíz y los diferentes niveles del árbol.",
-      enterNodeValue: "Ingresá el valor de la hoja",
-      addNode: "Añadir hoja",
-      addingNode: "Añadiendo...",
-      nodeValues: "Valor de las hojas:",
-      noNodesYet: "Ingresá un valor",
-      treeRoot: "Raíz del árbol:",
-      emptyTree: "Añadí valores para ver el árbol.",
-      treeVisualization: "Árbol generado:",
-      level: "Nivel",
-      errorBuildingTree: "Error al construir el Árbol Merkle:",
-      node: "Valor"
-    },    
+      title: "Merkle Tree Builder",
+      introduction: "A Merkle Tree is a binary tree data structure that efficiently verifies the integrity and consistency of large datasets. Each leaf in the tree contains a hash value, and the intermediate nodes represent combinations of the hashes of their child nodes. The root of the tree, known as the Merkle Root, summarizes all the information contained in the leaves.",
+      titleBuild: "Paso 1: Creá tu Merkle Tree",
+      invitation: "Below, you can create your own Merkle Tree. Try adding leaves and explore how the root and different levels of the tree are generated.",
+      enterNodeValue: "Enter a value for the node",
+      addNode: "Add Node",
+      addingNode: "Adding...",
+      nodeValues: "Node Values:",
+      noNodesYet: "No nodes added yet.",
+      treeRoot: "Tree Root:",
+      emptyTree: "The tree is currently empty.",
+      treeVisualization: "Merkle Tree Visualization",
+      level: "Level",
+      errorBuildingTree: "Error building Merkle Tree:",
+      node: "Value"
+    },
+    merkleVerifier: {
+      verifyTitle: "Step 2: Verify if a value belongs to the Merkle Tree",
+      verifyExplanation: "Here you can check if a value belongs to the Merkle Tree using its index, hash path, and root. This is essential for inclusion proofs and data verification.",
+      valueLabel: "Value",
+      valuePlaceholder: "Enter the value",
+      indexLabel: "Index",
+      indexPlaceholder: "Enter the index",
+      hashPathLabel: "Hash Path",
+      hashPathPlaceholder: "Enter the hash path (comma-separated)",
+      rootLabel: "Tree Root",
+      rootPlaceholder: "Enter the tree root",
+      verifyButton: "Verify",
+      verified: "The value belongs to the Merkle Tree",
+      notVerified: "The value does NOT belong to the Merkle Tree",
+      errorVerifying: "Error verifying the value"
+    }
+    
+  },
+  es: {   
     hero: {
       title: "Noir Cookbook",
       description1: "Ejemplos de uso de Noir.",
@@ -193,6 +195,45 @@ const resources = {
         limit: "Límite",
         fee_rate: "Tasa de tarifa (%)"
       }
+    },
+    merkle: {
+      title: "Entendiendo los Árboles de Merkle",
+      introduction: "Un Árbol de Merkle es una estructura de datos que permite verificar la integridad y consistencia de datos de manera eficiente. Cada hoja contiene un hash, y los nodos intermedios combinan los hashes de sus hijos hasta llegar a la raíz, llamada Merkle Root.",
+      useCaseTitle: "¿Para qué sirve un Árbol de Merkle?",
+      useCaseDescription: "Un caso práctico es verificar que una dirección pertenece a un conjunto sin necesidad de revelar todos los datos. Esto es crucial en sistemas como pruebas de inclusión, privacidad en blockchain y optimización de datos.",
+      stepOneTitle: "Paso 1: Crear tu Árbol Merkle",
+      stepOneDescription: "Añadí hojas a tu árbol y explorá cómo se generan los hashes en cada nivel hasta llegar a la raíz.",
+      stepTwoTitle: "Paso 2: Verificar un Valor en el Árbol",
+      introduction: "Un Árbol Merkle es una estructura de datos en forma de árbol binario que permite verificar la integridad y consistencia de grandes cantidades de datos de manera eficiente. Cada hoja del árbol contiene un valor hash y los nodos intermedios representan combinaciones de los hashes de sus nodos hijos. La raíz del árbol, conocida como Merkle Root, resume toda la información contenida en las hojas.",
+      invitation: "Aquí abajo podés crear tu propio Árbol Merkle. Probá añadiendo hojas y explorá cómo se genera la raíz y los diferentes niveles del árbol.",
+      titleBuild: "Paso 1: Creá tu Merkle Tree",
+      enterNodeValue: "Ingresá el valor de la hoja",
+      addNode: "Añadir hoja",
+      addingNode: "Añadiendo...",
+      nodeValues: "Valor de las hojas:",
+      noNodesYet: "Ingresá un valor",
+      treeRoot: "Raíz del árbol:",
+      emptyTree: "Añadí valores para ver el árbol.",
+      treeVisualization: "Árbol generado:",
+      level: "Nivel",
+      errorBuildingTree: "Error al construir el Árbol Merkle:",
+      node: "Valor"
+    }, 
+    merkleVerifier: {
+      verifyTitle: "Paso 2: Verificar si un valor pertenece al Árbol Merkle",
+      verifyExplanation: "Aquí podrás comprobar si un valor pertenece al Árbol Merkle utilizando su índice, el hash path, y la raíz. Esto es esencial para pruebas de inclusión y verificación de datos.",
+      valueLabel: "Valor",
+      valuePlaceholder: "Ingresá el valor",
+      indexLabel: "Índice",
+      indexPlaceholder: "Ingresá el índice",
+      hashPathLabel: "Hash Path",
+      hashPathPlaceholder: "Ingresá el hash path (separado por comas)",
+      rootLabel: "Raíz del Árbol",
+      rootPlaceholder: "Ingresá la raíz del árbol",
+      verifyButton: "Verificar",
+      verified: "El valor pertenece al Árbol Merkle",
+      notVerified: "El valor NO pertenece al Árbol Merkle",
+      errorVerifying: "Error al verificar el valor"
     }
   },
 };

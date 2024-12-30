@@ -76,3 +76,58 @@
   padding: 20px;
   overflow: auto;
 }
+
+.merkle-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.merkle-container {
+  text-align: center;
+  padding: 20px;
+  color: #ffffff;
+  margin: 0 auto;
+}
+
+.merkle-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+  
+}
+
+.merkle-description {
+  font-size: 1rem;
+  color: #cccccc;
+  margin-bottom: 30px;
+  padding-right: 200px;
+  padding-left: 200px;
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.use-case-description, .step-description {
+  font-size: 1rem;
+  color: #bbbbbb;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding-right: 200px;
+  padding-left: 200px;
+}
+
+.merkle-step {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #2d2d2d;
+  border-radius: 8px;
+}
