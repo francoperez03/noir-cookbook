@@ -19,4 +19,5 @@
 /* Main Content Styles */
 .app-container > *:not(footer) {
   flex: 1;
+  background-color: #242424;
 }
