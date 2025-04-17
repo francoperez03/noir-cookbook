@@ -34,7 +34,7 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
 
   const handleInputChange = (name: string, value: string) => {
     const numericValue = parseInt(value);
-    if (!isNaN(numericValue) || value === '') {
+    if (!isNaN(numericValue) || value === "") {
       setInputs((prev) => ({ ...prev, [name]: numericValue }));
     }
   };
@@ -58,7 +58,11 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
         handleScrollToDetails();
       }
     } catch (error) {
-      setStatus(`${t("errorPrefix")}: ${error instanceof Error ? error.message : t("unknownError")}`);
+      setStatus(
+        `${t("errorPrefix")}: ${
+          error instanceof Error ? error.message : t("unknownError")
+        }`
+      );
     } finally {
       setIsLoading(false);
     }
@@ -66,7 +70,7 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
 
   const handleScrollToDetails = () => {
     if (compileButtonRef.current) {
-      compileButtonRef.current.scrollIntoView({ behavior: 'smooth' });
+      compileButtonRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -78,29 +82,37 @@ function ProofForm({ onProofGenerated, acir }: ProofFormProps) {
       <p>{t("exampleValues")}</p>
       {acir.program.abi.parameters.map((param) => (
         <div key={param.name} className="form-group">
-          <label>
-            {t(`parameters.${param.name}`)}:
-            <input
-              type="text"
-              value={inputs[param.name] || 0}
-              onChange={(e) => handleInputChange(param.name, e.target.value)}
-              className="form-input"
-            />
+          <label className="form-label" htmlFor={param.name}>
+            {t(`parameters.${param.name}`)}
           </label>
+          <input
+            id={param.name}
+            type="text"
+            value={inputs[param.name] || 0}
+            onChange={(e) => handleInputChange(param.name, e.target.value)}
+            className="form-input"
+          />
         </div>
       ))}
-      <button onClick={handleCreateProof} className="form-button" disabled={isLoading}>
+
+      <button
+        onClick={handleCreateProof}
+        className="form-button"
+        disabled={isLoading}
+      >
         {isLoading ? t("creatingProof") : t("createProof")}
       </button>
 
       {status && (
-        <div className={`form-status ${status.startsWith(t("errorPrefix")) ? "error" : "success"}`}>
+        <div
+          className={`form-status ${
+            status.startsWith(t("errorPrefix")) ? "error" : "success"
+          }`}
+        >
           {status}
         </div>
       )}
-      <div ref={compileButtonRef}>
-        {/* Contenido adicional */}
-      </div>
+      <div ref={compileButtonRef}>{}</div>
     </div>
   );
 }
