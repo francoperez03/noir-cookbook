@@ -42,7 +42,7 @@ const resources = {
       missingCircuitCode: "Circuit code not loaded.",
       nargoError: "Error loading Nargo.toml.",
       errorPrefix: "Error",
-      explanation: "By pressing the \"Compiler Circuit\" button, the compiler generates the ACIR file (Abstract Circuit Intermediate Representation), which is a low-level representation of the circuit used for generating and verifying zero-knowledge proofs."
+      explanation: "By pressing the \"Compile Circuit\" button, the compiler generates the ACIR file (Abstract Circuit Intermediate Representation), which is a low-level representation of the circuit used for generating and verifying zero-knowledge proofs."
     },
     proofForm: {
       title: "Step 2: Prove",
