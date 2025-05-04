@@ -13,7 +13,7 @@
 }
 
 .footer-link {
-  color: #fff;
+  color: #000000;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@
 }
 
 .footer-link:hover {
-  color: #1d6ad8;
+  color: #715EC2;
 }
 
 .footer-icon {

@@ -2,16 +2,15 @@
   padding: 8px 16px;
   margin: 0 8px;
   font-size: 14px;
-  color: #fff;
+  color: #000000;
   background-color: transparent;
   border-radius: 4px;
-  cursor: pointer;
   height: auto;
   display: inline-block;
   vertical-align: middle;
 }
 
 .language-toggle.active {
-  background-color: #2d89ef;
+  background-color: #9894FF;
   color: #fff;
 }

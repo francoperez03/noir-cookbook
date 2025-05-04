@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import ProofsPage from "./pages/ProofsPage/ProofsPage";
-import MerkleTreePage from "./pages/MerkleTreePage/MerkleTreePage";
 import Footer from "./components/Footer/Footer";
+import MerkleInclusionPage from "./pages/MerkleInclusionPage/MerkleInclusionPage";
 function App() {
   const [activeTab, setActiveTab] = useState<"proofs" | "merkleTree">("proofs");
 
@@ -11,7 +11,7 @@ function App() {
     <div className="app-container">
       <Header activeTab={activeTab} onTabChange={(tab) => setActiveTab(tab)} />
       {activeTab === "proofs" && <ProofsPage />}
-      {activeTab === "merkleTree" && <MerkleTreePage />}
+      {activeTab === "merkleTree" && <MerkleInclusionPage />}
       <Footer />
     </div>
   );

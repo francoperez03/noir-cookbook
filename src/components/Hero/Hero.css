@@ -1,7 +1,7 @@
 .hero-container {
   text-align: center;
   padding: 20px;
-  color: #ffffff;
+  color: #000000;
   min-height: 100vh;
 }
 
@@ -9,13 +9,13 @@
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: #000000;
   text-align: center;
 }
 
 .hero-description {
   font-size: 1rem;
-  color: #cccccc;
+  color: #000000;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -34,7 +34,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .subsection-title {
@@ -42,7 +42,7 @@
   font-weight: bold;
   margin-top: 30px;
   margin-bottom: 15px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .input-list, .logic-list, .conditions-list {
@@ -60,7 +60,7 @@
 }
 
 .code-tag {
-  background-color: #333333;
+  background-color: #9894FF;
   padding: 2px 6px;
   border-radius: 4px;
   font-family: monospace;
@@ -68,7 +68,7 @@
 }
 
 .formula-container {
-  background-color: #2d2d2d;
+  background-color: #9894FF;
   padding: 15px;
   margin: 10px 0;
   border-radius: 6px;
@@ -77,7 +77,6 @@
   text-align: center;
 }
 
-/* Estilos para listas anidadas */
 .logic-list > li {
   margin-bottom: 30px;
 }
@@ -86,7 +85,6 @@
   margin-top: 15px;
 }
 
-/* Ajustes responsive */
 @media (max-width: 768px) {
   .hero-explanation {
     padding: 15px;

@@ -1,0 +1,75 @@
+.ticket-container {
+  background: linear-gradient(180deg, #e3dfff 0%, #d0c8f6 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 20px rgba(100, 100, 150, 0.15);
+  font-family: 'Inter', sans-serif;
+  color: #2a2043;
+}
+
+.ticket-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #1b1233;
+}
+
+.ticket-container p {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  color: #3a3259;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #c8c2e3;
+  background: #fff;
+  font-size: 1rem;
+  color: #2a2043;
+}
+
+.input-row input::placeholder {
+  color: #a9a3c2;
+}
+
+.input-row button {
+  background: #514167;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.input-row button:hover {
+  background: #706383;
+}
+
+.input-row button:disabled {
+  background: #aaa4c0;
+  cursor: not-allowed;
+}
+
+.hash-display {
+  margin-top: 1.5rem;
+  background: #f4f1fc;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #321e4c;
+  font-family: monospace;
+  font-size: 0.9rem;
+  word-break: break-all;
+}

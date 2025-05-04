@@ -8,21 +8,21 @@
 .proof-verifier-title {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: #000000;
   text-align: center;
 }
 
 .proof-verifier-subtitle {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: #000000;
   text-align: center;
 }
 
 .proof-verifier-explanation {
   font-size: 1rem;
   margin-bottom: 15px;
-  color: #ccc;
+  color: #000000;
   text-align: center;
   max-width: 800px;
   line-height: 1.6;
@@ -45,7 +45,7 @@
   height: 100px;
   padding: 8px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 4px;
 }
 
@@ -60,15 +60,15 @@
 .verify-button {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #ABAEFF;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .verify-button:hover {
-  background-color: #0056b3;
+  background-color: #9894FF;
 }
 
 .verify-status {
@@ -81,17 +81,17 @@
 
 .verify-status.success {
   background-color: #28a745;
-  color: #fff;
+  color: #ffffff;
 }
 
 .verify-status.error {
   background-color: #ff4d4f;
-  color: #fff;
+  color: #000000;
 }
 
 .proof-verifier-public-inputs {
   font-size: 1.5rem;
-  color: #fff;
+  color: #000000;
   margin-bottom: 10px;
 }
 
@@ -112,7 +112,7 @@
 
 .form-label {
   width: 150px;
-  color: #fff;
+  color: #000000;
   font-size: 1rem;
   margin-right: 10px;
 }
@@ -121,6 +121,6 @@
   flex: 1;
   padding: 8px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 4px;
 }

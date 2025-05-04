@@ -5,18 +5,18 @@
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  color: white;
+  color: #000000;
 }
 
 .circuit-compiler-title {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: #000000;
   text-align: center;
 }
 
 .circuit-compiler-button {
-  background-color: #2d89ef;
+  background-color: #ABAEFF;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -33,7 +33,7 @@
 }
 
 .circuit-compiler-button:hover:not(:disabled) {
-  background-color: #1d6ad8;
+  background-color: #9894FF;
   transform: scale(1.05);
 }
 
@@ -48,12 +48,12 @@
 
 .circuit-compiler-status.success {
   background-color: #28a745;
-  color: #fff;
+  color: #ffffff;
 }
 
 .circuit-compiler-status.error {
   background-color: #dc3545;
-  color: #fff;
+  color: #000000;
 }
 
 .editor-wrapper {
@@ -85,14 +85,14 @@
   margin-bottom: 10px;
   padding-left: 15px;
   font-weight: bold;
-  color: #fff;
+  color: #000000;
   text-align: left;
 }
 
 .circuit-compiler-explanation {
   font-size: 1rem;
   margin-bottom: 20px;
-  color: #ccc;
+  color: #000000;
   text-align: center;
   max-width: 800px;
   line-height: 1.5;
