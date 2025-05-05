@@ -1,0 +1,85 @@
+.claim-form-container {
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 16px rgba(102, 90, 255, 0.1);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.claim-form-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #4f46e5;
+}
+
+.claim-form-description {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+
+
+}
+
+.form-label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+
+}
+
+.form-input {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  background-color: #eef2ff;
+  transition: border 0.2s ease;
+  color: #000000;
+
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+.claim-form-button {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.claim-form-button:hover {
+  background-color: #4f46e5;
+}
+
+.claim-form-status {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #16a34a;
+}
+
+.claim-proof-output {
+  background-color: #1e1b4b;
+  color: #f9fafb;
+  font-family: monospace;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

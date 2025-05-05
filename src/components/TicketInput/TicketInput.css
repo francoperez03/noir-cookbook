@@ -1,10 +1,8 @@
 .ticket-container {
-  background: linear-gradient(180deg, #e3dfff 0%, #d0c8f6 100%);
   border-radius: 16px;
   padding: 2rem;
   max-width: 600px;
   margin: 2rem auto;
-  box-shadow: 0 4px 20px rgba(100, 100, 150, 0.15);
   font-family: 'Inter', sans-serif;
   color: #2a2043;
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './TicketInput.css'
+import { hashEmailPedersen } from "../../utils/EmailHasher";
 export default function TicketInput({ onHashGenerated }: { onHashGenerated: (hash: string, hash2: string) => void }) {
   const [email, setEmail] = useState("");
   const [hash, setHash] = useState<string | null>(null);
@@ -9,9 +10,9 @@ export default function TicketInput({ onHashGenerated }: { onHashGenerated: (has
     if (!email.trim()) return;
     setLoading(true);
     try {
-      const result = "2134"
+      const result = '0x' + (await hashEmailPedersen(email)).toString(16)
       setHash(result);
-      onHashGenerated(email,result);
+      onHashGenerated(email, result);
     } catch (err) {
       console.error("Failed to hash:", err);
     } finally {

@@ -1,0 +1,140 @@
+.tree-visualization {
+  padding: 2rem;
+  border-radius: 16px;
+  color: #000;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.tree-root {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.tree-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tree-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.level-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.node {
+  padding: 10px;
+  background-color: #706383;
+  color: #fff;
+  border: 1px solid #afa8ba;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  max-width: 160px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.hash-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: margin-bottom 0.3s ease;
+}
+
+.node.has-label .hash-row {
+  margin-bottom: 6px;
+}
+
+.node.is-root {
+  box-shadow: 0 0 5px 2px #f472b6;
+}
+
+.node.is-path {
+  box-shadow: 0 0 5px 2px #fbbf24;
+}
+
+.node.is-leaf {
+  box-shadow: 0 0 5px 2px #4caf50;
+}
+
+.clipboard-icon {
+  cursor: pointer;
+  color: #afa8ba;
+  transition: color 0.2s ease;
+}
+
+.clipboard-icon:hover {
+  color: #fff;
+}
+
+.clipboard-icon.copied {
+  color: #4caf50;
+}
+
+.ticket-label {
+  font-size: 0.8rem;
+  color: #fff;
+  animation: fadeInUp 0.3s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tree-explanation {
+  margin-top: 3rem;
+  background-color: #d0c8f6;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.tree-explanation h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.tree-explanation ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tree-explanation li {
+  margin-bottom: 0.75rem;
+}
+
+.example-proof {
+  background-color: #321e4c;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #fafafa;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

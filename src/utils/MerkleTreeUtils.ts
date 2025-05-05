@@ -8,7 +8,8 @@ export function toHexString(byteArray: Uint8Array): string {
 // Hash a single node using Barretenberg's pedersenHash
 export async function hashNode(data: string, bb: Barretenberg): Promise<Uint8Array> {
   const encoded = new TextEncoder().encode(data);
-  const hash = await bb.pedersenHash([new Fr(BigInt("0x" + toHexString(encoded)))], 0);
+  const inputFr = Fr.fromBuffer(encoded);
+  const hash = await bb.poseidon2Hash([inputFr]);
   return hash.toBuffer();
 }
 
@@ -25,9 +26,8 @@ export async function buildMerkleTree(
     for (let i = 0; i < currentLevel.length; i += 2) {
       const left = currentLevel[i];
       const right = currentLevel[i + 1] || left;
-      const parentHash = await bb.pedersenHash(
-        [new Fr(BigInt("0x" + toHexString(left))), new Fr(BigInt("0x" + toHexString(right)))],
-        0
+      const parentHash = await bb.poseidon2Hash(
+        [new Fr(BigInt("0x" + toHexString(left))), new Fr(BigInt("0x" + toHexString(right)))]
       );
       nextLevel.push(parentHash.toBuffer());
     }
