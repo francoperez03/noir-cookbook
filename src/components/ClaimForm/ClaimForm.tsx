@@ -45,13 +45,10 @@ export default function ClaimForm({
 
     try {
       const parsedInputs = {
-        leaf: "0x0b6423c65de8971f0643ab09e384b6009ccf91afc59eb82b3f762d3b068f3be6",
-        path: [
-          "0x2c89cbf002f98b27bed8c22279d920ec121130909ccb798b59e775f567f2eef6",
-          "0x232cffccaefe9c394f4aada19e5b0599b85de274e62074a686431b608c468c94"
-        ],
-        selector: [true, true],
-        root: "0x0a75936c9198aa238464d75b9f441788683d16a315c428c60160c24566d010a9"
+        leaf,
+        path: hashPath,
+        selector: directions,
+        root  
       };
 
       const noir = new Noir(acir.program);

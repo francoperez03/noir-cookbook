@@ -42,17 +42,18 @@ const itemVariants = {
 const steps = [
   {
     title: "You Bought a Ticket",
-    text: "But this isn't stored on a server. Not even on a database.",
+    text: "But this isn't stored on a server. Not even on a database. Your identity remains off-chain.",
   },
   {
-    title: "It's Planted in a Merkle Tree",
-    text: "Your email becomes a secret leaf, committed to a cryptographic structure used in zero-knowledge proofs.",
+    title: "It's Part of the Merkle Tree",
+    text: "Your email is transformed into a leaf and committed inside a public Merkle Tree. The tree is visible to everyone — but no one knows who owns each leaf.",
   },
   {
-    title: "Zero Knowledge. Full Proof.",
-    text: "You’ll prove your ticket exists — without revealing who you are. No accounts. No passwords. Just math.",
+    title: "Prove Without Revealing",
+    text: "You’ll generate a zero-knowledge proof that your leaf exists in the tree — without revealing your email. No accounts. No tracking. Just cryptographic truth.",
   },
 ];
+
 
 export default function MerkleTicketPage() {
   const [email, setEmail] = useState("");
@@ -116,7 +117,6 @@ export default function MerkleTicketPage() {
         />
       )}
 
-      {/* Paso 4: Verificar prueba (solo si ya se generó una prueba) */}
       {proof && treeData && (
         <ClaimVerifier
           proof={proof}

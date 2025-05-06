@@ -22,10 +22,18 @@
 }
 .verifier-diagram {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin: 3rem;
+  justify-content: center;
   gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.verifier-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .verifier-row {
@@ -56,6 +64,39 @@
   border-color: #7a9df8;
 }
 
+.verifier-core-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.verifier-result-bubble {
+  position: absolute;
+  top: 0;
+  right: -180px; /* distancia lateral desde el verifier */
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  white-space: nowrap;
+  background-color: white;
+  z-index: 10;
+}
+
+.verifier-result-bubble.ok {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.verifier-result-bubble.nok {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+
 .label {
   font-weight: bold;
   display: block;
@@ -64,9 +105,18 @@
 }
 
 .value {
-  font-size: 0.85rem;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
   color: #222;
+  background-color: #f8f8ff;
+  border: none;
+  padding: 6px 10px;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-radius: 4px;
 }
+
 
 .verify-button {
   margin-top: 1rem;
@@ -77,22 +127,30 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  min-width: 180px;
+  text-align: center;
 }
+
 
 .verify-button:hover {
   background-color: #4f46e5;
 }
 
 .verifier-result {
-  font-size: 1.1rem;
-  font-weight: bold;
+  min-width: 180px;        /* más ancha */
+  text-align: center;
   padding: 0.8rem 2rem;
   border-radius: 10px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(4px);
-  pointer-events: none;
-  position: relative;
+  font-weight: bold;
+  font-size: 1rem;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
+  pointer-events: none;
 }
 
 
