@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { hashEmailPedersen } from "../../utils/EmailHasher";
+import { hashEmail } from "../../utils/EmailHasher";
 import "./TicketInput.css";
 
 type Props = {
@@ -15,7 +15,6 @@ export default function TicketInput({ onHashGenerated }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const hashRef = useRef<HTMLDivElement | null>(null);
 
-  /* anima la tarjeta al montar */
   useEffect(() => {
     if (containerRef.current) {
       gsap.from(containerRef.current, {
@@ -27,7 +26,6 @@ export default function TicketInput({ onHashGenerated }: Props) {
     }
   }, []);
 
-  /* anima la aparición del hash */
   useEffect(() => {
     if (hash && hashRef.current) {
       gsap.fromTo(
@@ -42,7 +40,7 @@ export default function TicketInput({ onHashGenerated }: Props) {
     if (!email.trim()) return;
     setLoading(true);
     try {
-      const result = "0x" + (await hashEmailPedersen(email)).toString(16);
+      const result = "0x" + (await hashEmail(email)).toString(16);
       setHash(result);
       onHashGenerated(email, result);
     } catch (err) {
@@ -53,10 +51,10 @@ export default function TicketInput({ onHashGenerated }: Props) {
   }
   return (
     <div className="ticket-container" ref={containerRef}>
-<h2 className="ticket-title">Find your place</h2>
-<p className="ticket-sub">
-Enter your email to search the tree and claim your ticket.
-</p>
+      <h2 className="ticket-title">Find your place</h2>
+      <p className="ticket-sub">
+        Enter your email to search the tree and claim your ticket.
+      </p>
       <div className="input-row">
         <input
           type="email"

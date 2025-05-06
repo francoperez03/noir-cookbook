@@ -4,11 +4,11 @@ export async function getBarretenberg(): Promise<BarretenbergSync> {
   return await BarretenbergSync.new();
 }
 
-export async function hashEmailPedersen(email: string): Promise<bigint> {
+export async function hashEmail(email: string): Promise<bigint> {
   const bb = await getBarretenberg();
   const encoded = new TextEncoder().encode(email);
   const inputFr = Fr.fromBuffer(encoded);
 
-  const hash = BigInt(bb.pedersenHash([inputFr], 0).toString());
+  const hash = BigInt(bb.poseidon2Hash([inputFr]).toString());
   return hash;
 }

@@ -5,11 +5,11 @@ import ClaimForm from "../../components/ClaimForm/ClaimForm";
 import CircuitCompiler from "../../components/CircuitCompiler/CircuitCompiler";
 import { CompiledCircuit } from "@noir-lang/noir_js";
 import { motion } from "framer-motion";
-// import TreeViewer from "../../components/TreeViewer/TreeViewer";
-// import ClaimForm from "../../components/ClaimForm/ClaimForm";
-// import ClaimVerifier from "../../components/ClaimVerifier/ClaimVerifier";
+
 // import { MerkleTreeData, ProofData } from "../../types"; // tipos auxiliares
 import "./MerkleInclusionPage.css";
+import { ProofData } from "@aztec/bb.js";
+import ClaimVerifier from "../../components/ClaimVerifier/ClaimVerifier";
 export type MerkleProof = {
   leaf: string;
   hashPath: string[];
@@ -58,7 +58,7 @@ export default function MerkleTicketPage() {
   const [email, setEmail] = useState("");
   const [leaf, setLeaf] = useState<string | null>(null);
   const [acir, setAcir] = useState<object | null>(null);
-
+  const [proof, setProof] = useState<ProofData | null>(null);
   const [treeData, setTreeData] = useState<MerkleProof | null>(null);
   const onLeafCreated = useCallback((tree: MerkleProof) => {
     setTreeData(tree);
@@ -105,7 +105,6 @@ export default function MerkleTicketPage() {
         onCompile={(compiledAcir) => setAcir(compiledAcir)}
       />}
 
-      {/* Paso 3: Generar prueba de inclusión (se habilita si hay árbol y leaf) */}
       {leaf && treeData && acir && (
         <ClaimForm
           acir={acir as { program: CompiledCircuit }}
@@ -113,18 +112,18 @@ export default function MerkleTicketPage() {
           root={treeData.root}
           hashPath={treeData.hashPath}
           directions={treeData.directions}
-          onProofGenerated={() => {}}
+          onProofGenerated={(proofData) => {setProof(proofData)}}
         />
       )}
 
       {/* Paso 4: Verificar prueba (solo si ya se generó una prueba) */}
-      {/* {proof && treeData && (
+      {proof && treeData && (
         <ClaimVerifier
           proof={proof}
-          root={treeData.root}
-          onReset={() => setProof(null)}
+          acir={acir as { program: CompiledCircuit }}
+          onProofChange={() => {}}
         />
-      )} */}
+      )}
     </div>
   );
 }

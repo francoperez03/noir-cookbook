@@ -20,6 +20,12 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
   } | null>(null);
   const [copiedNode, setCopiedNode] = useState<string | null>(null);
   const [hovered, setHovered] = useState<"leaf" | "path" | "root" | null>(null);
+  const [autoHighlight, setAutoHighlight] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setAutoHighlight(false), 8000); // 10 segundos
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     async function computeTree() {
@@ -27,7 +33,7 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
       const leaves = [...staticEmails, currentLeaf];
       const tree = await buildMerkleTree(leaves);
       setMerkleTree(tree);
-  
+
       const levels = tree.levels;
       const leaf = "0x" + toHexString(levels[0][levels[0].length - 1]);
       const root = "0x" + toHexString(levels[levels.length - 1][0]);
@@ -35,12 +41,12 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
         (h) => "0x" + toHexString(h)
       );
       const directions = [true, true];
-  
+
       onLeafCreated?.({ leaf, hashPath, directions, root });
     }
     computeTree();
   }, [currentLeaf, onLeafCreated]);
-  
+
 
   const handleCopyToClipboard = async (hash: string) => {
     try {
@@ -66,8 +72,11 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
 
   return (
     <div className="tree-visualization">
-      <div className="tree-root">
-        <h3>🌲 Merkle Tree Root</h3>
+      <div className="tree-description">
+        We’ve mapped every ticket to a leaf — including yours.
+        Below, you’ll see the full Merkle Tree.
+        <br />
+        Your hashed ticket is already part of it. Can you find it?
       </div>
 
       <div className="tree-levels">
@@ -86,13 +95,13 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
 
                   let classes = "node";
                   if (
-                    isLeaf && hovered === "leaf"
+                    (isLeaf && (hovered === "leaf" || autoHighlight)) ||
+                    (isRoot && (hovered === "root" || autoHighlight)) ||
+                    (isPath && (hovered === "path" || autoHighlight))
                   ) {
-                    classes += " is-leaf has-label";
-                  } else if (isRoot && hovered === "root") {
-                    classes += " is-root has-label";
-                  } else if (isPath && hovered === "path") {
-                    classes += " is-path has-label";
+                    if (isLeaf) classes += " is-leaf has-label";
+                    else if (isRoot) classes += " is-root has-label";
+                    else if (isPath) classes += " is-path has-label";
                   }
 
                   return (
@@ -109,15 +118,16 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
                           />
                         )}
                       </div>
-                      {isLeaf && hovered === "leaf" && (
+                      {(isLeaf && (hovered === "leaf" || autoHighlight)) && (
                         <div className="ticket-label">This is your ticket</div>
                       )}
-                      {isPath && hovered === "path" && (
+                      {(isPath && (hovered === "path" || autoHighlight)) && (
                         <div className="ticket-label">This is a sibling</div>
                       )}
-                      {isRoot && hovered === "root" && (
+                      {(isRoot && (hovered === "root" || autoHighlight)) && (
                         <div className="ticket-label">This is the root</div>
                       )}
+
                     </div>
                   );
                 })}
@@ -127,46 +137,48 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
       </div>
 
       <div className="tree-explanation">
-        <h3>🧠 How does this prove your ticket?</h3>
-        <p>To verify that your leaf is part of the Merkle Tree, you need:</p>
-        <ul>
-          <li>
-            <span
-              onMouseEnter={() => setHovered("leaf")}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <strong>🌿 Leaf</strong>
-            </span>
-            : the hash of your email. It's the last node at the bottom.
-          </li>
-          <li>
-            <span
-              onMouseEnter={() => setHovered("path")}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <strong>🔁 Hash Path</strong>
-            </span>
-            : siblings at each level to recompute the root.
-          </li>
-          <li>
-            <span
-              onMouseEnter={() => setHovered("path")}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <strong>↔️ Path Directions</strong>
-            </span>
-            : e.g. <code>[true, true]</code>, left/right at each level.
-          </li>
-          <li>
-            <span
-              onMouseEnter={() => setHovered("root")}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <strong>🌳 Merkle Root</strong>
-            </span>
-            : the public root of the Merkle Tree.
-          </li>
-        </ul>
+      <h3 className="explanation-title">🧠 What makes your ticket real?</h3>
+<p className="explanation-subtitle">
+  A secret path proves your place in the tree. Hover over each step to reveal how it works.
+</p>
+
+<div className="explanation-cards">
+  <div
+    className="explanation-card"
+    onMouseEnter={() => setHovered("leaf")}
+    onMouseLeave={() => setHovered(null)}
+  >
+    <h4>Leaf</h4>
+    <p>The hashed version of your email. It lives quietly at the very bottom of the tree.</p>
+  </div>
+
+  <div
+    className="explanation-card"
+    onMouseEnter={() => setHovered("path")}
+    onMouseLeave={() => setHovered(null)}
+  >
+    <h4>Hash Path</h4>
+    <p>Your leaf’s neighbors. They're used to climb up the tree and prove your inclusion.</p>
+  </div>
+
+  <div
+    className="explanation-card"
+    onMouseEnter={() => setHovered("path")}
+    onMouseLeave={() => setHovered(null)}
+  >
+    <h4>Directions</h4>
+    <p>Instructions for each step: do you go left or right? It’s encoded in <code>[true, false]</code>.</p>
+  </div>
+
+  <div
+    className="explanation-card"
+    onMouseEnter={() => setHovered("root")}
+    onMouseLeave={() => setHovered(null)}
+  >
+    <h4>Merkle Root</h4>
+    <p>The top of the tree — the final result. It’s public, and it confirms all valid tickets.</p>
+  </div>
+</div>
 
         <div className="example-proof">
           <strong>Example:</strong>

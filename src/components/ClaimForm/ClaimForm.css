@@ -18,6 +18,13 @@
     text-align: center;
 }
 
+.claim-form-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #000000;
+  text-align: center;
+}
+
 .claim-form-description {
   font-size: 1rem;
   margin-bottom: 2rem;
@@ -51,7 +58,11 @@
   background-color: #eef2ff;
   transition: border 0.2s ease;
   color: #000000;
+}
 
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 
 .form-input:focus {

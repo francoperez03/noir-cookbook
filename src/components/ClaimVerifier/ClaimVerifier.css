@@ -1,0 +1,107 @@
+.proof-verifier-container {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 16px;
+  font-family: 'Inter', sans-serif;
+  color: #2a2043;
+}
+
+.verifier-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.verifier-intro {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.verifier-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem;
+  gap: 2rem;
+}
+
+.verifier-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.verifier-box {
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  max-width: 340px;
+  word-break: break-all;
+}
+
+.input-box {
+  background: #f4f4ff;
+  border-color: #bbb;
+}
+
+.verifier-core {
+  background: #e8f0fe;
+  border-color: #7a9df8;
+}
+
+.label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.value {
+  font-size: 0.85rem;
+  color: #222;
+}
+
+.verify-button {
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.verify-button:hover {
+  background-color: #4f46e5;
+}
+
+.verifier-result {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  position: relative;
+  z-index: 10;
+}
+
+
+.verifier-result.ok {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.verifier-result.nok {
+  background-color: #fee2e2;
+  color: #991b1b;
+}

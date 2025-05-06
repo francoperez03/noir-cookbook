@@ -72,10 +72,16 @@ export default function ClaimForm({
 
   return (
     <div className="claim-form-container">
-      <h2 className="claim-form-title">Claim Your Entry</h2>
-      <p className="claim-form-description">
-        This form will generate a ZK proof for your Merkle inclusion.
-      </p>
+<h2 className="claim-form-title">Claim Your Entry</h2>
+<p className="claim-form-description">
+  You've already got your ticket — now it's time to prove it's yours.  
+  <br /><br />
+  This form will generate a <strong>zero-knowledge proof</strong> that your ticket is part of the Merkle Tree, without revealing your email or identity.  
+  <br /><br />
+  Click in Generate Proof to create the proof and move forward.
+</p>
+
+
 
       <div className="form-group">
         <label>Leaf</label>
@@ -107,7 +113,7 @@ export default function ClaimForm({
               hash_path: e.target.value.split(",")
             }))
           }
-          className="form-input"
+          className="form-input form-textarea"
         />
       </div>
 
@@ -136,7 +142,7 @@ export default function ClaimForm({
 
       {proofOutput && (
         <div className="claim-proof-output">
-          <h2 className="claim-form-title">Generated Proof</h2>
+          <h2 className="claim-form-subtitle">Generated Proof</h2>
           <pre>{proofOutput}</pre>
         </div>
       )}

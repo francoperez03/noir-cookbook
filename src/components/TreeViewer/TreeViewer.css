@@ -2,14 +2,16 @@
   padding: 2rem;
   border-radius: 16px;
   color: #000;
-  max-width: 960px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
-.tree-root {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  font-weight: bold;
+.tree-description {
+  margin-top: 0.5rem;
+  color: #000000;
+  font-weight: normal;
+  font-size: 1.05rem;
+  line-height: 1.6;
   text-align: center;
 }
 
@@ -138,3 +140,50 @@
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+.explanation-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #1b1233;
+}
+
+.explanation-subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #514167;
+  font-size: 1rem;
+}
+
+.explanation-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.explanation-card {
+  background: #f4f1fc;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  max-width: 180px;
+  flex: 1 1 220px;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(130, 100, 255, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  color: #2a2043;
+  cursor: pointer;
+}
+
+.explanation-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(160, 120, 255, 0.25);
+}
+
+.explanation-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+
