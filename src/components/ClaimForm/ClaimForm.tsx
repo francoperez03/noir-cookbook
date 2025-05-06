@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CompiledCircuit, Noir } from "@noir-lang/noir_js";
 import { ProofData, UltraHonkBackend } from "@aztec/bb.js";
 import "./ClaimForm.css";
+import { t } from "i18next";
 
 interface ClaimFormProps {
   leaf: string;
@@ -9,7 +10,7 @@ interface ClaimFormProps {
   hashPath: string[];
   directions: boolean[];
   acir: { program: CompiledCircuit };
-  onProofReady: (proof: ProofData) => void;
+  onProofGenerated: (proof: ProofData) => void;
 }
 
 export default function ClaimForm({
@@ -18,7 +19,7 @@ export default function ClaimForm({
   hashPath,
   directions,
   acir,
-  onProofReady
+  onProofGenerated
 }: ClaimFormProps) {
   const [inputs, setInputs] = useState({
     leaf,
@@ -44,10 +45,13 @@ export default function ClaimForm({
 
     try {
       const parsedInputs = {
-        leaf: BigInt(inputs.leaf),
-        root: BigInt(inputs.root),
-        hash_path: inputs.hash_path.map(h => BigInt(h)),
-        selector: inputs.selector
+        leaf: "0x0b6423c65de8971f0643ab09e384b6009ccf91afc59eb82b3f762d3b068f3be6",
+        path: [
+          "0x2c89cbf002f98b27bed8c22279d920ec121130909ccb798b59e775f567f2eef6",
+          "0x232cffccaefe9c394f4aada19e5b0599b85de274e62074a686431b608c468c94"
+        ],
+        selector: [true, true],
+        root: "0x0a75936c9198aa238464d75b9f441788683d16a315c428c60160c24566d010a9"
       };
 
       const noir = new Noir(acir.program);
@@ -56,11 +60,11 @@ export default function ClaimForm({
       const generatedProof = await backend.generateProof(witness);
 
       setProofOutput(JSON.stringify(generatedProof, null, 2));
-      onProofReady(generatedProof);
-      setStatus("✅ Proof generated successfully!");
+      onProofGenerated(generatedProof);
+      setStatus("Proof generated successfully!");
     } catch (e) {
       console.error(e);
-      setStatus("❌ Failed to generate proof");
+      setStatus("Failed to generate proof");
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +72,7 @@ export default function ClaimForm({
 
   return (
     <div className="claim-form-container">
-      <h2 className="claim-form-title">🎟️ Claim Your Entry</h2>
+      <h2 className="claim-form-title">Claim Your Entry</h2>
       <p className="claim-form-description">
         This form will generate a ZK proof for your Merkle inclusion.
       </p>
@@ -127,17 +131,20 @@ export default function ClaimForm({
         className="claim-form-button"
         disabled={isLoading}
       >
-        {isLoading ? "⏳ Generating..." : "🚀 Generate Proof"}
+        {isLoading ? "⏳ Generating..." : "Generate Proof"}
       </button>
 
       {proofOutput && (
         <div className="claim-proof-output">
-          <h3>🧾 Generated Proof</h3>
+          <h2 className="claim-form-title">Generated Proof</h2>
           <pre>{proofOutput}</pre>
         </div>
       )}
+                
 
-      {status && <div className="claim-form-status">{status}</div>}
+      {status && <div className={`claim-form-status ${
+            status.startsWith(t("errorPrefix")) ? "error" : "success"
+          }`}>{status}</div>}
     </div>
   );
 }

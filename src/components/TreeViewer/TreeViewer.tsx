@@ -55,7 +55,7 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
   const shortenHash = (hash: string) =>
     `${hash.slice(0, 7)}...${hash.slice(-4)}`;
 
-  if (!merkleTree) return <p>Building Merkle tree...</p>;
+  if (!merkleTree) return <p></p>;
 
   const levels = merkleTree.levels;
   const rootHash = "0x" + toHexString(levels[levels.length - 1][0]);
@@ -86,14 +86,13 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
 
                   let classes = "node";
                   if (
-                    (isLeaf && hovered === "leaf") ||
-                    (isLeaf && hovered === null)
+                    isLeaf && hovered === "leaf"
                   ) {
                     classes += " is-leaf has-label";
                   } else if (isRoot && hovered === "root") {
-                    classes += " is-root";
+                    classes += " is-root has-label";
                   } else if (isPath && hovered === "path") {
-                    classes += " is-path";
+                    classes += " is-path has-label";
                   }
 
                   return (
@@ -112,6 +111,12 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
                       </div>
                       {isLeaf && hovered === "leaf" && (
                         <div className="ticket-label">This is your ticket</div>
+                      )}
+                      {isPath && hovered === "path" && (
+                        <div className="ticket-label">This is a sibling</div>
+                      )}
+                      {isRoot && hovered === "root" && (
+                        <div className="ticket-label">This is the root</div>
                       )}
                     </div>
                   );

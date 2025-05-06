@@ -1,68 +1,18 @@
-.inclusion-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: sans-serif;
-  color: #000000;
-  background-color: #121212;
-  border-radius: 12px;
-}
-
-.input-section input {
-  padding: 0.5rem;
-  font-size: 1rem;
-  margin-right: 1rem;
-  border-radius: 6px;
-}
-
-.input-section button {
-  padding: 0.5rem 1rem;
-  background-color: #3b82f6;
-  color: 000000;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.node-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.node-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #333;
-}
-
-.node-list button {
-  background-color: #10b981;
-  border: none;
-  padding: 0.3rem 0.8rem;
-  color: #000000;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.proof-section {
-  margin-top: 2rem;
-  background-color: #1e1e1e;
+.intro-sequence {
+  margin: 3rem auto;
+  margin-bottom: 0;
+  max-width: 700px;
   padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #333;
+  text-align: center;
 }
 
-.hash-path {
-  list-style: none;
-  padding-left: 0;
-  font-family: monospace;
+.intro-step {
+  margin-bottom: 2.5rem;
+  opacity: 0;
 }
 
-.hash-path li {
-  background: #2d2d2d;
-  padding: 0.4rem;
-  margin-bottom: 0.3rem;
-  border-radius: 4px;
+.intro-step h3,
+.intro-step p {
+  color: #000000;
 }
+

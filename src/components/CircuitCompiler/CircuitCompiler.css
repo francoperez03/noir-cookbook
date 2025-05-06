@@ -16,7 +16,7 @@
 }
 
 .circuit-compiler-button {
-  background-color: #ABAEFF;
+  background-color: #6366f1;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -33,7 +33,6 @@
 }
 
 .circuit-compiler-button:hover:not(:disabled) {
-  background-color: #9894FF;
   transform: scale(1.05);
 }
 

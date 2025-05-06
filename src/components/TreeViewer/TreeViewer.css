@@ -62,15 +62,15 @@
 }
 
 .node.is-root {
-  box-shadow: 0 0 5px 2px #f472b6;
+  box-shadow: 0 0 15px 4px #FF8D87;
 }
 
 .node.is-path {
-  box-shadow: 0 0 5px 2px #fbbf24;
+  box-shadow: 0 0 15px 4px #FFE471;
 }
 
 .node.is-leaf {
-  box-shadow: 0 0 5px 2px #4caf50;
+  box-shadow: 0 0 15px 4px #62BD96;
 }
 
 .clipboard-icon {

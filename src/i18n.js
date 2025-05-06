@@ -31,7 +31,7 @@ const resources = {
       limitFormula: "total_payment ≤ limit"
     },
     circuitCompiler: {
-      title: "Step 1: Compile",
+      title: "Compile your circuit",
       compile: "Compile Circuit",
       compiling: "Compiling...",
       circuitTitle: "Circuit in Noir",

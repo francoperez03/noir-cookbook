@@ -26,8 +26,8 @@ fn should_verify_merkle_inclusion() {
         0x2c89cbf002f98b27bed8c22279d920ec121130909ccb798b59e775f567f2eef6,
         0x232cffccaefe9c394f4aada19e5b0599b85de274e62074a686431b608c468c94,
     ];
-    let directions: [bool; 2] = [true, true];
+    let selector: [bool; 2] = [true, true];
     let root = 0x0a75936c9198aa238464d75b9f441788683d16a315c428c60160c24566d010a9;
 
-    main(leaf, path, directions, root);
+    main(leaf, path, selector, root);
 }
