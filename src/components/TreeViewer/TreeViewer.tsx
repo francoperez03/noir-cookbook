@@ -78,6 +78,8 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
         <br />
         Your hashed ticket is already part of it. Can you find it?
       </div>
+      <div className="tree-explanation">
+      <h3 className="explanation-title"> Can you find your ticket?</h3>
 
       <div className="tree-levels">
         {levels
@@ -136,49 +138,48 @@ function TreeViewer({ currentLeaf, onLeafCreated }: MerkleTreeProps) {
           ))}
       </div>
 
-      <div className="tree-explanation">
-      <h3 className="explanation-title">🧠 What makes your ticket real?</h3>
-<p className="explanation-subtitle">
-  A secret path proves your place in the tree. Hover over each step to reveal how it works.
-</p>
+        <p className="explanation-subtitle">
+          We need 4 elements to prove you're the ticket holder — one public, and three private.
+          Hover over each one to reveal its role
+        </p>
 
-<div className="explanation-cards">
-  <div
-    className="explanation-card"
-    onMouseEnter={() => setHovered("leaf")}
-    onMouseLeave={() => setHovered(null)}
-  >
-    <h4>Leaf</h4>
-    <p>The hashed version of your email. It lives quietly at the very bottom of the tree.</p>
-  </div>
+        <div className="explanation-cards">
+          <div
+            className="explanation-card"
+            onMouseEnter={() => setHovered("leaf")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <h4>Leaf (private)</h4>
+            <p>The hashed version of your email. It lives quietly at the very bottom of the tree.</p>
+          </div>
 
-  <div
-    className="explanation-card"
-    onMouseEnter={() => setHovered("path")}
-    onMouseLeave={() => setHovered(null)}
-  >
-    <h4>Hash Path</h4>
-    <p>Your leaf’s neighbors. They're used to climb up the tree and prove your inclusion.</p>
-  </div>
+          <div
+            className="explanation-card"
+            onMouseEnter={() => setHovered("path")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <h4>Hash Path (private)</h4>
+            <p>Your leaf’s neighbors. They're used to climb up the tree and prove your inclusion.</p>
+          </div>
 
-  <div
-    className="explanation-card"
-    onMouseEnter={() => setHovered("path")}
-    onMouseLeave={() => setHovered(null)}
-  >
-    <h4>Directions</h4>
-    <p>Instructions for each step: do you go left or right? It’s encoded in <code>[true, false]</code>.</p>
-  </div>
+          <div
+            className="explanation-card"
+            onMouseEnter={() => setHovered("path")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <h4>Directions (private)</h4>
+            <p>Instructions for each step: do you go left or right? It’s encoded in <code>[true, false]</code>.</p>
+          </div>
 
-  <div
-    className="explanation-card"
-    onMouseEnter={() => setHovered("root")}
-    onMouseLeave={() => setHovered(null)}
-  >
-    <h4>Merkle Root</h4>
-    <p>The top of the tree — the final result. It’s public, and it confirms all valid tickets.</p>
-  </div>
-</div>
+          <div
+            className="explanation-card"
+            onMouseEnter={() => setHovered("root")}
+            onMouseLeave={() => setHovered(null)}
+          >
+            <h4>Merkle Root (public)</h4>
+            <p>The top of the tree — the final result. It’s public, and it confirms all valid tickets.</p>
+          </div>
+        </div>
 
         <div className="example-proof">
           <strong>Example:</strong>
