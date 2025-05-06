@@ -5,7 +5,7 @@ import ProofsPage from "./pages/ProofsPage/ProofsPage";
 import Footer from "./components/Footer/Footer";
 import MerkleInclusionPage from "./pages/MerkleInclusionPage/MerkleInclusionPage";
 function App() {
-  const [activeTab, setActiveTab] = useState<"proofs" | "merkleTree">("proofs");
+  const [activeTab, setActiveTab] = useState<"proofs" | "merkleTree">("merkleTree");
 
   return (
     <div className="app-container">
