@@ -8,12 +8,38 @@ This is a hands-on guide for developers exploring **zero-knowledge proofs** with
 
 This project is part of a curated collection of privacy-based interactions — such as **proving you own a ticket without revealing your identity**, **executing private payments**, and more. Each demo is designed to teach a core pattern in zk through interaction and code.
 
-Our first module simulates a private transaction validation circuit:
+### 🧩 Module 1: Private Payment Validation
 
-- You provide a balance, a payment amount, a spending limit, and a fee rate.
-- The circuit calculates the fee and validates:
-  - That you have enough balance.
-  - That you stay under your spending limit.
+Our first module simulates a private transaction validation circuit.  
+You provide:
+
+- A balance  
+- A payment amount  
+- A spending limit  
+- A fee rate  
+
+The circuit calculates the transaction fee and ensures two things:
+
+- ✅ That you have enough balance to cover the payment and fee.  
+- ✅ That the total payment doesn’t exceed the allowed limit.
+
+This demonstrates how you can apply privacy to financial constraints — without revealing exact balances or spending patterns.
+
+---
+
+### 🌳 Module 2: Merkle Tree Ticket Proof
+
+The second module walks through the full process of proving that your ticket is part of a public Merkle Tree — without revealing your identity.
+
+You enter your email, and the platform:
+
+- Hashes it privately as a Merkle leaf  
+- Builds the full tree with other users  
+- Generates a Merkle inclusion proof  
+- Lets you verify the proof against a known root
+
+This shows how **cryptographic commitments** can power private access systems — like tickets, credentials, or memberships — without user accounts or passwords.
+
 
 ---
 
@@ -26,45 +52,13 @@ Our first module simulates a private transaction validation circuit:
 
 ---
 
-## ⚙️ Requirements
-
-Make sure you have [`noirup`](https://github.com/noir-lang/noirup) installed to manage Noir versions:
-
-```bash
-curl -L https://raw.githubusercontent.com/noir-lang/noirup/main/install | bash
-```
-
-Then install Noir:
-
-```bash
-noirup --nightly
-```
-
----
-
-## 🧪 Run a Circuit Locally
-
-Create and compile a Noir project:
-
-```bash
-nargo new circuit
-cd circuit
-nargo compile
-```
-
-You’ll get a `target/` directory with the compiled circuit (ACIR).
-
----
 
 ## 🖥️ Integrating Noir with a Web App
 
 Install the necessary packages:
 
 ```bash
-npm install \
-  @noir-lang/noir_wasm@1.0.0-beta.0 \
-  @noir-lang/noir_js@1.0.0-beta.0 \
-  @aztec/bb.js@0.63.1
+npm install
 ```
 
 Run the frontend:
@@ -87,14 +81,6 @@ Then open your browser and check the dev console after clicking "Generate Proof"
   - Generate a proof.
   - (Optionally) Verify the proof using the verifier module.
 
----
-
-## 💡 Developer Tips
-
-- Treat your Noir circuit like a backend service: clean, isolated, and testable.
-- Always test and compile with `nargo` before integrating into your app.
-- Use `console.log` on the frontend to inspect witness or proof data for debugging.
-- You can extend this app by adding circuits for other use cases (e.g., membership checks, hidden balances, anonymous voting, etc.).
 
 ---
 
@@ -104,10 +90,8 @@ We’re building a growing library of zk examples — from basic primitives to f
 
 Next use cases may include:
 
-- ✅ Private ticketing
+- ✅ Anonymous voting proccess
 - 💸 Private payments with attached notes
-- 🎯 Anonymous eligibility checks
-- 🧾 Merkle inclusion proofs
 
 ---
 
